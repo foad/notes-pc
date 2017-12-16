@@ -1,17 +1,20 @@
-/*
- * Use :local before each CSS class to be scoped
- * Use classes instead of ids
- */
-
-:local .tone {
-    color: var(--primary-color);    /* Using global constants example */
+/**** MENUBAR ****/
+.menubar {
+    height: 32px;
+    width: 100%;
 }
 
-:local .link {
-    composes: tone;                 /* Composition example */
-    text-decoration: none;
+/**** SIDEBAR ****/
+.sidebar {
+    flex-basis: 240px;
+    display: inline-flex;
+    flex-flow: column nowrap;
 }
-
-:local .logo {
-    height: 100px;
+.notesbar {
+    flex-basis:360px;
+    display: inline-flex;
+    flex-flow: column nowrap;
+}
+.notes {
+    flex: 1;
 }

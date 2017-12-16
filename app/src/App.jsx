@@ -1,14 +1,23 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {} from './styles/global.css'
-import Link from './components/Link.jsx'
+import {} from './styles/local.css'
+import MenuBar from './components/MenuBar.jsx'
+import SideBar from './components/SideBar.jsx'
+import NotesBar from './components/NotesBar.jsx'
+import Notes from './components/Notes.jsx'
 
 
 export default class App extends Component {
     render() {
         return (
-            <div>
-                <h1>Test</h1>
+            <div className='main'>
+                <MenuBar />
+                <div className='content'>
+                    <SideBar />
+                    <NotesBar />
+                    <Notes />
+                </div>
             </div>
         )
     }

@@ -22,3 +22,19 @@ html, body {
     color: #CDCCD1;
     font-family: 'Open Sans', sans-serif;
 }
+#app {
+    height: 100vh;
+    overflow-y: hidden;
+}
+.main {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+}
+.content {
+    display: inline-flex;
+    flex: 1;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    justify-content: center;
+}
