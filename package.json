@@ -1,15 +1,15 @@
 {
-  "name": "electron-react-webpack",
-  "version": "1.0.0",
-  "description": "Electron + React + Webpack 2 seed.",
+  "name": "notes",
+  "version": "0.1.0",
+  "description": "Desktop version of notes application",
   "main": "main.js",
   "scripts": {
     "dev": "webpack",
-    "start": "electron ."
+    "start": "webpack && electron ."
   },
-  "author": "J. Renato Ramos González <renato.etc.etc.etc@gmail.com>",
-  "repository": "pastahito/electron-react-webpack",
-  "license": "WTFPL",
+  "author": "Dan Foad <contact@danfoad.co.uk>",
+  "repository": "https://github.com/DanFoad/notes-pc",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
