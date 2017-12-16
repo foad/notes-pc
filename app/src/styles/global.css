@@ -1,33 +1,24 @@
-/*
- * Global constants goes here
- */
+/**** GLOBAL CONSTANTS ****/
 :root {
     --primary-color: #1BA0C8;
 }
 
+/**** FONTS ****/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
 
-/*
- * Global CSS goes here
- */
-html {
+/**** GLOBAL CSS ****/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*:before, *:after {
+    box-sizing: border-box;
+}
+html, body {
+    width: 100%;
     height: 100%;
-}
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    margin: auto;
-}
-#app {
-    color: #2c3e50;
-    max-width: 600px;
-    font-family: Source Sans Pro, Helvetica, sans-serif;
-    text-align: center;
-}
-#app p {
-    text-align: justify;
-}
-.hello {
-    color: var(--primary-color);
+    background-color: #0F1012;
+    color: #CDCCD1;
+    font-family: 'Open Sans', sans-serif;
 }
