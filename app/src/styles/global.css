@@ -24,6 +24,14 @@ html, body {
     color: #CDCCD1;
     font-family: 'Open Sans', sans-serif;
 }
+body.light {
+    color: #444444;
+    background-color: #FEF5F5;
+}
+::selection {
+    background-color: transparent;
+    color: inherit;
+}
 #app {
     height: 100vh;
     overflow-y: hidden;
