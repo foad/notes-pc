@@ -9,21 +9,21 @@ export default class SideBar extends Component {
 
     getTags() {
         let fakedata = [
-            <li>todo<span className='tags__count'>32</span></li>,
-            <li>learning<span className='tags__count'>4</span></li>,
-            <li>snippets<span className='tags__count'>5</span></li>,
-            <li>blog<span className='tags__count'>6</span></li>,
-            <li className='selected'>business <br />
+            <li key='1'>todo<span className='tags__count'>16</span></li>,
+            <li key='2'>learning<span className='tags__count'>4</span></li>,
+            <li key='3'>snippets<span className='tags__count'>5</span></li>,
+            <li key='4'>blog<span className='tags__count'>6</span></li>,
+            <li key='5' className='selected'>business <br />
                 <span className='tags__count'>11</span>
                 <span className='tags__button'>Rename</span>
                 <span className='tags__button'>Delete</span>
             </li>,
-            <li>food<span className='tags__count'>6</span></li>,
+            <li key='6'>food<span className='tags__count'>6</span></li>,
         ];
 
         return (
             <ul className='tags'>
-                <li>All<span className='tags__count'>32</span></li>
+                <li key='0'>All<span className='tags__count'>32</span></li>
                 { fakedata }
             </ul>
         );

@@ -44,7 +44,7 @@
     color: #FFFFFF;
 }
 .tags__button {
-    color: var(--primary-color);
+    color: var(--primary-color-darker);
     font-size: 10px;
     font-weight: bold;
     position: relative;
@@ -64,6 +64,75 @@
     flex-basis:360px;
     display: inline-flex;
     flex-flow: column nowrap;
+}
+.notesbar  h2 {
+    position: relative;
+    padding-left: 24px;
+    font-size: 16px;
+    font-weight: normal;
+}
+.searchbar {
+    margin-top: 16px;
+}
+.searchbar input {
+    display: inline-block;
+    width: 100%;
+    height: 48px;
+    text-align: center;
+    border: 0;
+    background-color: transparent;
+    border-radius: 0;
+    -webkit-appearance: none;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+.searchbar input:focus, .searchbox input:hover {
+    outline: none;
+}
+.notesort {
+    background-color: var(--primary-color);
+    height: 28px;
+    line-height: 28px;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+}
+.notesort h2 {
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+.notesummaries {
+    display: inline-flex;
+    flex: 1;
+    flex-flow: column nowrap;
+    align-items: stretch;
+}
+.notesummary {
+    margin: 6px  0;
+    padding: 8px 16px;
+}
+.notesummary.selected {
+    background-color: var(--primary-color-darker);
+    color: #FFFFFF;
+}
+.notesummary.selected h3 {
+    font-weight: normal;
+}
+.notesummary h3 {
+    font-size: 16px;
+}
+.notesummary p {
+    white-space: nowrap;
+    max-width: 360px;
+    overflow: hidden;
+    height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    font-weight: 100;
+}
+.notesummary__date {
+    font-size: 12px;
 }
 
 /**** NOTES ****/
