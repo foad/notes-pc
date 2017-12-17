@@ -1,7 +1,7 @@
-
+import sidebar from './sidebar'
 
 const reducers = [
-  
+    sidebar,
 ];
 
 export default (state, action) => {

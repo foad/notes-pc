@@ -15,6 +15,7 @@ export default class SideBar extends Component {
     }    
 
     componentDidUpdate(nextProps, nextState) {
+        // Toggle between light and dark mode
         if (nextState.colourMode == 'moon' && this.state.colourMode == 'sun') {
             document.querySelector('body').className = ''
         } else if (nextState.colourMode == 'sun' && this.state.colourMode == 'moon') {
@@ -23,6 +24,7 @@ export default class SideBar extends Component {
     }
 
     setSelectedTag(id) {
+        // Set selected tag
         this.setState({ selectedTag: id })
     }
 
@@ -32,21 +34,26 @@ export default class SideBar extends Component {
         let tagsHTML = [];
         let allCount = 0;
 
+        // Loop through each tag
         for (var i = 0; i < tags.length; i++) {
             allCount += tags[i].count
-            let clickHandler = this.setSelectedTag.bind(this, tags[i].id)
 
-            if (this.state.selectedTag == tags[i].id) {
+            // Click handler for individual tags
+            let clickHandler = this.setSelectedTag.bind(this, tags[i].id)
+            let renameHandler = this.startRenameTag.bind(this, tags[i].id)
+            let deleteHandler = this.deleteTag.bind(this, tags[i].id)
+
+            if (this.state.selectedTag == tags[i].id) { // If tag is selected
                 tagsHTML.push(
                     <li className='selected' key={ tags[i].id } onClick={ clickHandler }>
                         { tags[i].name }
                         <span className='tags__count'>{ tags[i].count }</span>
                         <br />
-                        <span className='tags__button'>Rename</span>
-                        <span className='tags__button'>Delete</span>
+                        <span className='tags__button' onClick={ renameHandler }>Rename</span>
+                        <span className='tags__button' onClick={ deleteHandler }>Delete</span>
                     </li>
                 );
-            } else {
+            } else { // If tag not selected
                 tagsHTML.push(
                     <li key={ tags[i].id } onClick={ clickHandler }>
                         { tags[i].name }
@@ -55,6 +62,7 @@ export default class SideBar extends Component {
             }
         }
 
+        // Click handler for All tag
         let clickHandler = this.setSelectedTag.bind(this, -1)
 
         return (
@@ -65,6 +73,19 @@ export default class SideBar extends Component {
         );
     }
 
+    newTag() {
+        AppActions.createNewTag('none')
+    }
+
+    startRenameTag(id) {
+
+    }
+
+    deleteTag(id) {
+        AppActions.deleteTag(id)
+    }
+
+    // Toggle between light and dark mode states
     toggleColourMode() {
         if (this.state.colourMode == 'moon')
             this.setState({ colourMode: 'sun' });
@@ -75,7 +96,7 @@ export default class SideBar extends Component {
     render () {
         return (
             <div className='sidebar'>
-                <h2>Tags<span className='icon__button'>+</span></h2>
+                <h2>Tags<span className='icon__button' onClick={ this.newTag }>+</span></h2>
                 { this.getTags() }
                 <div className='colourmode' onClick={ this.toggleColourMode } ><i className={ 'fa fa-' + this.state.colourMode + '-o' } /></div>
             </div>
