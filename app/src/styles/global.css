@@ -5,6 +5,7 @@
 
 /**** FONTS ****/
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 /**** GLOBAL CSS ****/
 * {
@@ -37,4 +38,23 @@ html, body {
     flex-flow: row nowrap;
     align-items: stretch;
     justify-content: center;
+}
+h2 {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+/**** ICONS ****/
+.icon__button {
+    display: inline-block;
+    position: absolute;
+    cursor: pointer;
+    right: 24px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    text-align: center;
 }
