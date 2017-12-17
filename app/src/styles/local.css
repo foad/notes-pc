@@ -61,7 +61,7 @@
 
 /**** NOTESBAR ****/
 .notesbar {
-    flex-basis:360px;
+    flex-basis:256px;
     display: inline-flex;
     flex-flow: column nowrap;
 }
@@ -106,10 +106,15 @@
     flex: 1;
     flex-flow: column nowrap;
     align-items: stretch;
+    overflow-y: scroll;
+}
+.notesummaries::-webkit-scrollbar {
+    width: 0px;
 }
 .notesummary {
     margin: 6px  0;
     padding: 8px 16px;
+    cursor: pointer;
 }
 .notesummary.selected {
     background-color: var(--primary-color-darker);
@@ -119,20 +124,20 @@
     font-weight: normal;
 }
 .notesummary h3 {
-    font-size: 16px;
+    font-size: 14px;
 }
 .notesummary p {
     white-space: nowrap;
-    max-width: 360px;
+    max-width: 256px;
     overflow: hidden;
     height: 20px;
     line-height: 20px;
-    font-size: 14px;
+    font-size: 13px;
     text-overflow: ellipsis;
     font-weight: 100;
 }
 .notesummary__date {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 /**** NOTES ****/
