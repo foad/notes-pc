@@ -5,11 +5,6 @@ import AppConstants from '../AppConstants'
 const init = () => {
 
 }
-
-const getTags = () => {
-    return store.getState().tags
-}
-
 const createNewTag = (name) => {
     
 }
@@ -21,10 +16,6 @@ const deleteTag = (id) => {
     })
 }
 
-const getSelectedTag = () => {
-    return store.getState().selectedTag
-}
-
 const setSelectedTag = (id) => {
     store.dispatch({
         type : AppConstants.APP_SET_SELECTED_TAG,
@@ -32,10 +23,16 @@ const setSelectedTag = (id) => {
     })
 }
 
+const setSelectedNote = (id) => {
+    store.dispatch({
+        type : AppConstants.APP_SET_SELECTED_NOTE,
+        id
+    })
+}
+
 export default {
     init,
-    getTags,
     deleteTag,
-    getSelectedTag,
     setSelectedTag,
+    setSelectedNote,
 }

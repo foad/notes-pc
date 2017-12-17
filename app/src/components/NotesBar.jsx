@@ -1,37 +1,62 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+
+import AppActions from '../actions/AppActions'
 
 import SearchBar from './SearchBar.jsx'
 import NoteSort from './NoteSort.jsx'
 
-export default class NotesBar extends Component {
+class NotesBar extends Component {
 
     constructor(props) {
         super(props);
 
+        this.state = { selectedTag: props.selectedTag, selectedNote: props.selectedNote, tags: props.tags, notes: props.notes }
+
         this.getNoteSummaries = this.getNoteSummaries.bind(this);
+        this.getTaggedNotes = this.getTaggedNotes.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            ...this.state,
+            selectedTag: nextProps.selectedTag,
+            tags: nextProps.tags,
+            notes: nextProps.notes,
+            selectedNote: nextProps.selectedNote,
+        })
+    }
+
+    getTaggedNotes() {
+        const notes = [ ...this.state.notes ]
+        if (this.state.selectedTag == -1) return notes
+        return notes.filter((notes) => notes.tag == this.state.selectedTag)
+    }
+
+    setSelectedNote(id) {
+        AppActions.setSelectedNote(id)
     }
 
     getNoteSummaries() {
+        var taggedNotes = this.getTaggedNotes()
 
-        let fakedata = [
-            <div key='0' className='notesummary'><h3>Community Learning</h3><p>During particular group of cells that can easily</p><span className='notesummary__date'>05/11/2017 12:51pm</span></div>,
-            <div key='1' className='notesummary'><h3>Notes from investor meeting</h3><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='2' className='notesummary'><h3>3/17</h3><p>lremLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='3' className='notesummary'><h3>Economics Articles</h3><p>lotremLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='4' className='notesummary selected'><h3>Two years to date</h3><p>lotremLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='5' className='notesummary'><h3>Thoughts on reduction</h3><p>remLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='6' className='notesummary'><h3>Note from conference call</h3><p>remLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='7' className='notesummary'><h3>Brief thoughts</h3><p>lotremLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='8' className='notesummary'><h3>Idea for todo</h3><p>remLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='9' className='notesummary'><h3>Community Learning</h3><p>lotremLorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='10' className='notesummary'><h3>Community Learning</h3><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='11' className='notesummary'><h3>Community Learning</h3><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-            <div key='12' className='notesummary'><h3>Community Learning</h3><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis quae amet rem quia nostrum minima consectetur dolores ipsam exercitationem iusto quo minus omnis in quisquam aperiam perferendis, aliquid eum. Fugit!</p><span className='notesummary__date'>05/11/2017 12:51 PM</span></div>,
-        ];
+        var notesummaries = []
+
+        for (var i = 0; i < taggedNotes.length; i++) {
+            var clickHandler = this.setSelectedNote.bind(this, taggedNotes[i].id)
+
+            notesummaries.push(
+            <div key={taggedNotes[i].id} className={'notesummary' + (taggedNotes[i].id == this.state.selectedNote ? ' selected' : '')}
+                onClick={ clickHandler }>
+                <h3>{taggedNotes[i].name}</h3>
+                <p>{taggedNotes[i].shortText}</p>
+                <span className='notesummary__date'>{new Date(taggedNotes[i].date).toLocaleString("en-GB")}</span>
+            </div>)
+        }
 
         return (
             <div className='notesummaries'>
-                { fakedata }
+                { notesummaries }
             </div>
         );
     }
@@ -47,3 +72,12 @@ export default class NotesBar extends Component {
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+        selectedTag: state.selectedTag,
+        tags: state.tags,
+        notes: state.notes,
+        selectedNote: state.selectedNote,
+    }
+}
+export default connect(mapStateToProps)(NotesBar);

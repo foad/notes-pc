@@ -1,7 +1,9 @@
 import sidebar from './sidebar'
+import notesbar from './notesbar'
 
 const reducers = [
     sidebar,
+    notesbar,
 ];
 
 export default (state, action) => {
