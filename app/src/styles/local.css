@@ -10,10 +10,53 @@
     flex-basis: 208px;
     display: inline-flex;
     flex-flow: column nowrap;
-    padding-left: 24px;
 }
 .sidebar h2 {
     position: relative;
+    padding-left: 24px;
+}
+.tags {
+    list-style: none;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    flex: 1;
+    margin-top: 24px;
+    font-size: 14px;
+}
+.tags li {
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    cursor: pointer;
+    padding-left: 24px;
+}
+.tags li:hover{
+    background-color: var(--primary-color);
+}
+.tags__count {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+.tags li:hover .tags__count {
+    color: #FFFFFF;
+}
+.tags__button {
+    color: var(--primary-color);
+    font-size: 10px;
+    font-weight: bold;
+    position: relative;
+    top: -14px;
+    margin-right: 4px;
+    cursor: pointer;
+}
+.tags li:hover .tags__button {
+    color: #FFFFFF;
+}
+.tags .selected {
+    height: 48px;
 }
 
 /**** NOTESBAR ****/
