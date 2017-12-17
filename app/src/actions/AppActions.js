@@ -21,8 +21,21 @@ const deleteTag = (id) => {
     })
 }
 
+const getSelectedTag = () => {
+    return store.getState().selectedTag
+}
+
+const setSelectedTag = (id) => {
+    store.dispatch({
+        type : AppConstants.APP_SET_SELECTED_TAG,
+        id
+    })
+}
+
 export default {
     init,
     getTags,
     deleteTag,
+    getSelectedTag,
+    setSelectedTag,
 }

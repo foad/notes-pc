@@ -7,6 +7,7 @@ export default class NotesBar extends Component {
 
     constructor(props) {
         super(props);
+
         this.getNoteSummaries = this.getNoteSummaries.bind(this);
     }
 

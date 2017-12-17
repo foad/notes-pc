@@ -1,18 +1,27 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 import AppActions from '../actions/AppActions.js'
 
-export default class SideBar extends Component {
+class SideBar extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = { colourMode: 'sun', selectedTag: 4 };
+        this.state = { colourMode: 'sun', selectedTag: props.selectedTag, tags: props.tags };
 
         this.getTags = this.getTags.bind(this);
         this.setSelectedTag = this.setSelectedTag.bind(this);
         this.toggleColourMode = this.toggleColourMode.bind(this);
     }    
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            ...this.state,
+            selectedTag: nextProps.selectedTag,
+            tags: nextProps.tags,
+        })
+    }
 
     componentDidUpdate(nextProps, nextState) {
         // Toggle between light and dark mode
@@ -25,11 +34,11 @@ export default class SideBar extends Component {
 
     setSelectedTag(id) {
         // Set selected tag
-        this.setState({ selectedTag: id })
+        AppActions.setSelectedTag(id);
     }
 
     getTags() {
-        var tags = AppActions.getTags();
+        var tags = this.state.tags;
 
         let tagsHTML = [];
         let allCount = 0;
@@ -103,3 +112,10 @@ export default class SideBar extends Component {
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+        selectedTag: state.selectedTag,
+        tags: state.tags,
+    }
+}
+export default connect(mapStateToProps)(SideBar);

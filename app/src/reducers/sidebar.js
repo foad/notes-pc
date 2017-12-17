@@ -14,6 +14,13 @@ export default (state = {}, payload) => {
             }
         }
 
+        case (AppConstants.APP_SET_SELECTED_TAG): {
+            return {
+                ...state,
+                selectedTag: payload.id,
+            }
+        }
+
         default: {
             return state
         }
