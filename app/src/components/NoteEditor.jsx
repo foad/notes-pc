@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 
+import AppActions from '../actions/AppActions'
+
 import {Editor, EditorState, ContentState, EditorChangeType} from 'draft-js'
 
 export default class NoteEditor extends Component {
@@ -8,13 +10,20 @@ export default class NoteEditor extends Component {
         super(props);
         this.state = {
             editorState: EditorState.createWithContent(ContentState.createFromText(props.initialValue)),
+            id: props.id,
         };
-        this.onChange = (editorState) => this.setState({editorState});
+        this.onChange = this.onChange.bind(this)
+    }
+
+    onChange(editorState) {
+        AppActions.setNoteText(this.state.id, editorState.getCurrentContent().getPlainText())
+        this.setState({editorState});
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            editorState: EditorState.createWithContent(ContentState.createFromText(nextProps.initialValue))
+            editorState: EditorState.createWithContent(ContentState.createFromText(nextProps.initialValue)),
+            id: nextProps.id,
         })
     }
 

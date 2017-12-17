@@ -48,7 +48,7 @@ class Notes extends Component {
                 <h2 className='note__title'>{noteName}</h2>
                 <p className='note__tag'>{noteTag}</p>
                 <NotesMenu />
-                <NoteEditor initialValue={noteText} />
+                <NoteEditor id={this.state.selectedNote} initialValue={noteText} />
             </div>
             
         )

@@ -49,7 +49,7 @@ class NotesBar extends Component {
             <div key={taggedNotes[i].id} className={'notesummary' + (taggedNotes[i].id == this.state.selectedNote ? ' selected' : '')}
                 onClick={ clickHandler }>
                 <h3>{taggedNotes[i].name}</h3>
-                <p>{taggedNotes[i].shortText}</p>
+                <p>{taggedNotes[i].text}</p>
                 <span className='notesummary__date'>{new Date(taggedNotes[i].date).toLocaleString("en-GB")}</span>
             </div>)
         }
