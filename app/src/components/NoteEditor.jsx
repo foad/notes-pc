@@ -12,6 +12,12 @@ export default class NoteEditor extends Component {
         this.onChange = (editorState) => this.setState({editorState});
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            editorState: EditorState.createWithContent(ContentState.createFromText(nextProps.initialValue))
+        })
+    }
+
     render () {
         return (
             <Editor editorState={this.state.editorState} onChange={this.onChange} />
