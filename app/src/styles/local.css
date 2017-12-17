@@ -14,12 +14,15 @@
     line-height: 24px;
     cursor: pointer;
     -webkit-app-region: no-drag;
+    position: relative;
+    top: -1px;
 }
 .menubar i:hover {
     background-color: var(--primary-color);
 }
 .menubar i.smaller {
     font-size: 9px;
+    top: -2px;
 }
 
 /**** SIDEBAR ****/
