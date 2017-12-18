@@ -12,28 +12,30 @@ export default class NoteEditor extends Component {
         this.state = {
             editorState: initialEditorState,
             id: props.id,
-            selection: initialEditorState.getSelection()
         };
         this.onChange = this.onChange.bind(this)
+        this.onBlur = this.onBlur.bind(this)
+    }
+
+    onBlur() {
+        AppActions.setNoteText(this.state.id, this.state.editorState.getCurrentContent().getPlainText())
     }
 
     onChange(editorState) {
-        AppActions.updateSelection(editorState.getSelection())
-        AppActions.setNoteText(this.state.id, editorState.getCurrentContent().getPlainText())
+        this.setState({editorState})
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
             ...this.state,
             editorState: EditorState.createWithContent(ContentState.createFromText(nextProps.initialValue)),
-            id: nextProps.id,
-            selection: nextProps.selection || this.state.editorState.getSelection(),
+            id: nextProps.id
         })
     }
 
     render () {
         return (
-            <Editor editorState={EditorState.forceSelection(this.state.editorState, this.state.selection)} onChange={this.onChange} />
+            <Editor editorState={this.state.editorState} onBlur={this.onBlur} onChange={this.onChange} />
         )
     }
 }

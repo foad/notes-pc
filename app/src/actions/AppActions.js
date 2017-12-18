@@ -46,19 +46,11 @@ const updateNoteTitle = (id, name) => {
     })
 }
 
-const updateSelection = (selection) => {
-    store.dispatch({
-        type: AppConstants.APP_UPDATE_SELECTION,
-        selection
-    })
-}
-
 export default {
     init,
     deleteTag,
     setSelectedTag,
     setSelectedNote,
     setNoteText,
-    updateNoteTitle,
-    updateSelection,
+    updateNoteTitle
 }

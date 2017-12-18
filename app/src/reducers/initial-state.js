@@ -19,6 +19,5 @@ export default {
         {id: 5, name: 'hreh erg werhehg', tag: 5, date: '2017-12-16T11:12:13.000', text: 'During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah'},
         {id: 6, name: 'test st', tag: 2, date: '2017-12-16T11:12:13.000', text: 'During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah'},
         {id: 7, name: 'not fromme', tag: 1, date: '2017-12-16T11:12:13.000', text: 'During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah During particular group of cells that can easily be blah blah blah'},
-    ],
-    selection: null,
+    ]
 };

@@ -16,8 +16,7 @@ class Notes extends Component {
             noteName: props.noteName,
             noteTag: props.noteTag,
             noteText: props.noteText,
-            tags: props.tags,
-            selection: props.selection,
+            tags: props.tags
         }
 
         this.getNoteContent = this.getNoteContent.bind(this)
@@ -30,7 +29,6 @@ class Notes extends Component {
             noteTage: nextProps.noteTage,
             noteText: nextProps.noteText,
             tags: nextProps.tags,
-            selection: nextProps.selection,
         })
     }
 
@@ -48,7 +46,7 @@ class Notes extends Component {
                 <input className='note__title' value={this.state.noteName} ref='titleInput' onChange={this.handleTitleChange.bind(this)} />
                 <p className='note__tag'>{this.getTagName.bind(this, this.state.noteTag)}</p>
                 <NotesMenu />
-                <NoteEditor id={this.state.selectedNote} initialValue={this.state.noteText} selection={this.state.selection} />
+                <NoteEditor id={this.state.selectedNote} initialValue={this.state.noteText} />
             </div>
         )
     }
@@ -70,7 +68,6 @@ const mapStateToProps = state => {
         noteTag: selectedNoteVal.tag,
         noteText: selectedNoteVal.text,
         tags: state.tags,
-        selection: state.selection,
     }
 }
 export default connect(mapStateToProps)(Notes)
