@@ -13,6 +13,13 @@ export default (state = {}, payload) => {
             return newState
         }
 
+        case (AppConstants.APP_UPDATE_SELECTION): {
+            return {
+                ...state,
+                selection: payload.selection,
+            }
+        }
+
         default: {
             return state
         }

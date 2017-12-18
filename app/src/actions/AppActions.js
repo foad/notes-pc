@@ -38,10 +38,27 @@ const setNoteText = (id, text) => {
     })
 }
 
+const updateNoteTitle = (id, name) => {
+    store.dispatch({
+        type: AppConstants.APP_UPDATE_NOTE_TITLE,
+        id,
+        name
+    })
+}
+
+const updateSelection = (selection) => {
+    store.dispatch({
+        type: AppConstants.APP_UPDATE_SELECTION,
+        selection
+    })
+}
+
 export default {
     init,
     deleteTag,
     setSelectedTag,
     setSelectedNote,
     setNoteText,
+    updateNoteTitle,
+    updateSelection,
 }

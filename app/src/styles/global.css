@@ -28,7 +28,7 @@ body.light {
     color: #444444;
     background-color: #FEF5F5;
 }
-::selection {
+::selection:not(input) {
     background-color: transparent;
     color: inherit;
 }

@@ -184,6 +184,19 @@
 .note__title {
     font-size: 16px;
     padding-left: 16px;
+    -webkit-appearance: none;
+    border: 0;
+    background-color: transparent;
+    display: inline-block;
+    color: inherit;
+    font-weight: bold;
+}
+.note__title ::selection {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+}
+.note__title:focus {
+    outline: none;
 }
 .note__tag {
     font-size: 12px;

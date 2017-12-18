@@ -8,28 +8,32 @@ export default class NoteEditor extends Component {
 
     constructor(props) {
         super(props);
+        const initialEditorState = EditorState.createWithContent(ContentState.createFromText(props.initialValue))
         this.state = {
-            editorState: EditorState.createWithContent(ContentState.createFromText(props.initialValue)),
+            editorState: initialEditorState,
             id: props.id,
+            selection: initialEditorState.getSelection()
         };
         this.onChange = this.onChange.bind(this)
     }
 
     onChange(editorState) {
+        AppActions.updateSelection(editorState.getSelection())
         AppActions.setNoteText(this.state.id, editorState.getCurrentContent().getPlainText())
-        this.setState({editorState});
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
+            ...this.state,
             editorState: EditorState.createWithContent(ContentState.createFromText(nextProps.initialValue)),
             id: nextProps.id,
+            selection: nextProps.selection || this.state.editorState.getSelection(),
         })
     }
 
     render () {
         return (
-            <Editor editorState={this.state.editorState} onChange={this.onChange} />
+            <Editor editorState={EditorState.forceSelection(this.state.editorState, this.state.selection)} onChange={this.onChange} />
         )
     }
 }

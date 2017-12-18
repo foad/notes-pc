@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
+import AppActions from '../actions/AppActions'
+
 import NotesMenu from './NotesMenu.jsx'
 import NoteEditor from './NoteEditor.jsx'
 
@@ -9,7 +11,14 @@ class Notes extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {selectedNote: props.selectedNote, notes: props.notes, tags: props.tags}
+        this.state = {
+            selectedNote: props.selectedNote,
+            noteName: props.noteName,
+            noteTag: props.noteTag,
+            noteText: props.noteText,
+            tags: props.tags,
+            selection: props.selection,
+        }
 
         this.getNoteContent = this.getNoteContent.bind(this)
     }
@@ -17,8 +26,11 @@ class Notes extends Component {
     componentWillReceiveProps(nextProps) {
         this.setState({
             selectedNote: nextProps.selectedNote,
-            notes: nextProps.notes,
+            noteName: nextProps.noteName,
+            noteTage: nextProps.noteTage,
+            noteText: nextProps.noteText,
             tags: nextProps.tags,
+            selection: nextProps.selection,
         })
     }
 
@@ -26,31 +38,18 @@ class Notes extends Component {
         return '#' + this.state.tags.find((tag) => tag.id == tagID).name
     }
 
+    handleTitleChange(event) {
+        AppActions.updateNoteTitle(this.state.selectedNote, event.target.value)
+    }
+
     getNoteContent() {
-        var selectedNote = this.state.notes.find((note) => {
-            return note.id == this.state.selectedNote
-        })
-
-        var noteName, noteTag, noteText
-        
-        if (selectedNote !== undefined) {
-            noteName = selectedNote.name
-            noteTag = this.getTagName(selectedNote.tag)
-            noteText = selectedNote.text
-        } else {
-            noteName = ''
-            noteTag = ''
-            noteText = ''
-        }
-
         return (
             <div className='notes'>
-                <h2 className='note__title'>{noteName}</h2>
-                <p className='note__tag'>{noteTag}</p>
+                <input className='note__title' value={this.state.noteName} ref='titleInput' onChange={this.handleTitleChange.bind(this)} />
+                <p className='note__tag'>{this.getTagName.bind(this, this.state.noteTag)}</p>
                 <NotesMenu />
-                <NoteEditor id={this.state.selectedNote} initialValue={noteText} />
+                <NoteEditor id={this.state.selectedNote} initialValue={this.state.noteText} selection={this.state.selection} />
             </div>
-            
         )
     }
 
@@ -61,10 +60,17 @@ class Notes extends Component {
     }
 }
 const mapStateToProps = state => {
+    var selectedNoteVal = state.notes.find((note) => {
+        return note.id == state.selectedNote
+    })
+    if (selectedNoteVal === undefined) selectedNoteVal = {id: -1, name: '', tag: -1, text: ''}
     return {
-        selectedNote: state.selectedNote,
-        notes: state.notes,
+        selectedNote: selectedNoteVal.id,
+        noteName: selectedNoteVal.name,
+        noteTag: selectedNoteVal.tag,
+        noteText: selectedNoteVal.text,
         tags: state.tags,
+        selection: state.selection,
     }
 }
 export default connect(mapStateToProps)(Notes)
