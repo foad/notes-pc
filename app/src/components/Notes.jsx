@@ -20,20 +20,22 @@ class Notes extends Component {
         }
 
         this.getNoteContent = this.getNoteContent.bind(this)
+        this.getTagName = this.getTagName.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
             selectedNote: nextProps.selectedNote,
             noteName: nextProps.noteName,
-            noteTage: nextProps.noteTage,
+            noteTag: nextProps.noteTag,
             noteText: nextProps.noteText,
             tags: nextProps.tags,
         })
     }
 
-    getTagName(tagID) {
-        return '#' + this.state.tags.find((tag) => tag.id == tagID).name
+    getTagName() {
+        if (this.state.noteTag == -1) return ''
+        return '#' + this.state.tags.find((tag) => tag.id == this.state.noteTag).name
     }
 
     handleTitleChange(event) {
@@ -44,7 +46,7 @@ class Notes extends Component {
         return (
             <div className='notes'>
                 <input className='note__title' value={this.state.noteName} ref='titleInput' onChange={this.handleTitleChange.bind(this)} />
-                <p className='note__tag'>{this.getTagName.bind(this, this.state.noteTag)}</p>
+                <p className='note__tag'>{ this.getTagName() }</p>
                 <NotesMenu />
                 <NoteEditor id={this.state.selectedNote} initialValue={this.state.noteText} />
             </div>
