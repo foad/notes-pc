@@ -8,7 +8,7 @@ class SideBar extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { colourMode: 'sun', selectedTag: props.selectedTag, tags: props.tags };
+        this.state = { colourMode: 'sun', selectedTag: props.selectedTag, tags: props.tags, notes: props.notes };
 
         this.getTags = this.getTags.bind(this);
         this.setSelectedTag = this.setSelectedTag.bind(this);
@@ -20,6 +20,7 @@ class SideBar extends Component {
             ...this.state,
             selectedTag: nextProps.selectedTag,
             tags: nextProps.tags,
+            notes: nextProps.notes,
         })
     }
 
@@ -41,11 +42,10 @@ class SideBar extends Component {
         var tags = this.state.tags;
 
         let tagsHTML = [];
-        let allCount = 0;
+        let allCount = this.state.notes.length;
 
         // Loop through each tag
         for (var i = 0; i < tags.length; i++) {
-            allCount += tags[i].count
 
             // Click handler for individual tags
             let clickHandler = this.setSelectedTag.bind(this, tags[i].id)
@@ -116,6 +116,7 @@ const mapStateToProps = state => {
     return {
         selectedTag: state.selectedTag,
         tags: state.tags,
+        notes: state.notes,
     }
 }
 export default connect(mapStateToProps)(SideBar);

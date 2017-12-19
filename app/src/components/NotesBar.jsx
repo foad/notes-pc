@@ -15,6 +15,7 @@ class NotesBar extends Component {
 
         this.getNoteSummaries = this.getNoteSummaries.bind(this);
         this.getTaggedNotes = this.getTaggedNotes.bind(this);
+        this.newNote = this.newNote.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -48,8 +49,8 @@ class NotesBar extends Component {
             notesummaries.push(
             <div key={taggedNotes[i].id} className={'notesummary' + (taggedNotes[i].id == this.state.selectedNote ? ' selected' : '')}
                 onClick={ clickHandler }>
-                <h3>{taggedNotes[i].name}</h3>
-                <p>{taggedNotes[i].text}</p>
+                <h3>{taggedNotes[i].name == '' ? '[No title]' : taggedNotes[i].name }</h3>
+                <p>{taggedNotes[i].text == '' ? '[No content]' : taggedNotes[i].text}</p>
                 <span className='notesummary__date'>{new Date(taggedNotes[i].date).toLocaleString("en-GB")}</span>
             </div>)
         }
@@ -61,10 +62,30 @@ class NotesBar extends Component {
         );
     }
 
+    getLatestNote(notes) {
+        var largestID = -1
+        for (var i = 0; i < notes.length; i++) {
+            if (notes[i].id > largestID) largestID = notes[i].id
+        }
+        return largestID
+    }
+
+    newNote() {
+        var noteIndex = this.getLatestNote(this.state.notes) + 1
+        var note = {
+            id: noteIndex,
+            name: '',
+            tag: -1,
+            date: new Date().toISOString(),
+            text: ''
+        }
+        AppActions.createNewNote(note)
+    }
+
     render () {
         return (
             <div className='notesbar'>
-                <h2>business notes<span className='icon__button'>+</span></h2>
+                <h2>business notes<span className='icon__button' onClick={ this.newNote }>+</span></h2>
                 <SearchBar />
                 <NoteSort />
                 { this.getNoteSummaries() }

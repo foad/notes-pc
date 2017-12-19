@@ -20,6 +20,14 @@ export default (state = {}, payload) => {
             return newState
         }
 
+        case (AppConstants.APP_CREATE_NEW_NOTE): {
+            return {
+                ...state,
+                selectedNote: payload.note.id,
+                notes: [ ...state.notes, payload.note ]
+            }
+        }
+
         default: {
             return state
         }
