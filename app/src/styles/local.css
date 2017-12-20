@@ -278,6 +278,7 @@
     outline: none;
     border-color: transparent;
     box-shadow: none;
+    color: inherit;
 }
 .Select-menu::-webkit-scrollbar {
     width: 0;

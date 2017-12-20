@@ -8,7 +8,7 @@ class SideBar extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { colourMode: 'sun', selectedTag: props.selectedTag, tags: props.tags, notes: props.notes };
+        this.state = { colourMode: 'sun', selectedTag: props.selectedTag, tags: props.tags, noteTags: props.noteTags, };
 
         this.getTags = this.getTags.bind(this);
         this.setSelectedTag = this.setSelectedTag.bind(this);
@@ -16,11 +16,12 @@ class SideBar extends Component {
     }    
 
     componentWillReceiveProps(nextProps) {
+        console.log('updating brug')
         this.setState({
             ...this.state,
             selectedTag: nextProps.selectedTag,
             tags: nextProps.tags,
-            notes: nextProps.notes,
+            noteTags: nextProps.noteTags,
         })
     }
 
@@ -38,11 +39,23 @@ class SideBar extends Component {
         AppActions.setSelectedTag(id);
     }
 
+    getCounts() {
+        // Add count to each tag
+        this.state.tags.forEach(t => t.count = 0)
+
+        // Loop through all notes and increment related tag
+        for (var i = 0; i < this.state.noteTags.length; i++) {
+            var tag = this.state.noteTags[i]
+            if (tag !== -1) this.state.tags.filter(t => t.id == tag)[0].count++
+        }
+    }
+
     getTags() {
         var tags = this.state.tags;
 
         let tagsHTML = [];
-        let allCount = this.state.notes.length;
+        let allCount = this.state.noteTags.length;
+        this.getCounts();
 
         // Loop through each tag
         for (var i = 0; i < tags.length; i++) {
@@ -113,10 +126,11 @@ class SideBar extends Component {
     }
 }
 const mapStateToProps = state => {
+    var noteTags = state.notes.map(n => n.tag)
     return {
         selectedTag: state.selectedTag,
         tags: state.tags,
-        notes: state.notes,
+        noteTags,
     }
 }
 export default connect(mapStateToProps)(SideBar);
