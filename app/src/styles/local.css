@@ -273,6 +273,12 @@
 .Select.is-focused.has-value.Select--single > .Select-control .Select-value .Select-value-label, .Select.is-focused.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
     color: #FFFFFF;
 }
+.Select.is-focused:not(.is-open) > .Select-control {
+    background-color: transparent;
+    outline: none;
+    border-color: transparent;
+    box-shadow: none;
+}
 .Select-menu::-webkit-scrollbar {
     width: 0;
 }

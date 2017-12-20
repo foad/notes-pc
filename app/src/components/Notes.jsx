@@ -44,6 +44,10 @@ class Notes extends Component {
         AppActions.updateNoteTitle(this.state.selectedNote, event.target.value)
     }
 
+    handleSelectChange(selectedOption) {
+        AppActions.updateNoteTag(this.state.selectedNote, selectedOption.value)
+    }
+
     getOptions() {
         var options = []
         for (var i = 0; i < this.state.tags.length; i++) {
@@ -59,7 +63,7 @@ class Notes extends Component {
                 {(this.state.selectedNote == -1) ? '' : <Select
                     name='notes-tag-select'
                     value={this.state.noteTag}
-                    onChange={this.handleSelectChange}
+                    onChange={this.handleSelectChange.bind(this)}
                     options={this.getOptions()}
                 />}
                 <NotesMenu />

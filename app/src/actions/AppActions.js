@@ -46,6 +46,14 @@ const updateNoteTitle = (id, name) => {
     })
 }
 
+const updateNoteTag = (id, tag) => {
+    store.dispatch({
+        type: AppConstants.APP_UPDATE_NOTE_TAG,
+        id,
+        tag
+    })
+}
+
 const createNewNote = (note) => {
     store.dispatch({
         type: AppConstants.APP_CREATE_NEW_NOTE,
@@ -60,5 +68,6 @@ export default {
     setSelectedNote,
     setNoteText,
     updateNoteTitle,
+    updateNoteTag,
     createNewNote,
 }
