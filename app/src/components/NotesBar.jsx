@@ -11,7 +11,7 @@ class NotesBar extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { selectedTag: props.selectedTag, selectedNote: props.selectedNote, tags: props.tags, notes: props.notes }
+        this.state = { selectedTag: props.selectedTag, selectedNote: props.selectedNote, tags: props.tags, notes: props.notes, noteTags: props.noteTags, }
 
         this.getNoteSummaries = this.getNoteSummaries.bind(this);
         this.getTaggedNotes = this.getTaggedNotes.bind(this);
@@ -25,6 +25,7 @@ class NotesBar extends Component {
             tags: nextProps.tags,
             notes: nextProps.notes,
             selectedNote: nextProps.selectedNote,
+            noteTags: nextProps.noteTags,
         })
     }
 
@@ -94,11 +95,13 @@ class NotesBar extends Component {
     }
 }
 const mapStateToProps = state => {
+    var noteTags = state.notes.map(n => n.tag)
     return {
         selectedTag: state.selectedTag,
         tags: state.tags,
         notes: state.notes,
         selectedNote: state.selectedNote,
+        noteTags,
     }
 }
 export default connect(mapStateToProps)(NotesBar);

@@ -16,7 +16,6 @@ class SideBar extends Component {
     }    
 
     componentWillReceiveProps(nextProps) {
-        console.log('updating brug')
         this.setState({
             ...this.state,
             selectedTag: nextProps.selectedTag,

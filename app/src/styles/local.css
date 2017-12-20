@@ -96,7 +96,7 @@
 
 /**** NOTESBAR ****/
 .notesbar {
-    flex-basis:256px;
+    flex-basis:288px;
     display: inline-flex;
     flex-flow: column nowrap;
 }
