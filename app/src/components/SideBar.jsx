@@ -8,7 +8,13 @@ class SideBar extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { colourMode: 'sun', selectedTag: props.selectedTag, tags: props.tags, noteTags: props.noteTags, };
+        this.state = {
+            colourMode: 'sun',
+            selectedTag: props.selectedTag,
+            tags: props.tags,
+            noteTags:props.noteTags,
+            noteTitles: props.noteTitles,
+        };
 
         this.getTags = this.getTags.bind(this);
         this.setSelectedTag = this.setSelectedTag.bind(this);
@@ -21,6 +27,7 @@ class SideBar extends Component {
             selectedTag: nextProps.selectedTag,
             tags: nextProps.tags,
             noteTags: nextProps.noteTags,
+            noteTitles: nextProps.noteTitles,
         })
     }
 
@@ -126,10 +133,12 @@ class SideBar extends Component {
 }
 const mapStateToProps = state => {
     var noteTags = state.notes.map(n => n.tag)
+    var noteTitles = state.notes.map(n => n.title)
     return {
         selectedTag: state.selectedTag,
         tags: state.tags,
         noteTags,
+        noteTitles,
     }
 }
 export default connect(mapStateToProps)(SideBar);
