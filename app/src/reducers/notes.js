@@ -24,6 +24,21 @@ export default (state = {}, payload) => {
             return newState
         }
 
+        case (AppConstants.APP_UPDATE_NOTE_EDITOR): {
+            const newState = { ...state }
+            for (var i = 0; i < newState.notes.length; i++) {
+                if (newState.notes[i].id == payload.id) {
+                    newState.notes[i].text = payload.text
+                    break
+                }
+            }
+            return {
+                ...newState,
+                editorState: payload.editorState,
+                selectionState: payload.selectionState,
+            }
+        }
+
         default: {
             return state
         }

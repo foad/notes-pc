@@ -8,4 +8,5 @@ export default keymirror({
     APP_UPDATE_NOTE_TITLE : null,
     APP_CREATE_NEW_NOTE : null,
     APP_UPDATE_NOTE_TAG : null,
+    APP_UPDATE_NOTE_EDITOR : null,
 })

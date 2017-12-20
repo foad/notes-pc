@@ -61,6 +61,16 @@ const createNewNote = (note) => {
     })
 }
 
+const updateNoteEditor = (id, text, editorState, selectionState) => {
+    store.dispatch({
+        type: AppConstants.APP_UPDATE_NOTE_EDITOR,
+        id,
+        text,
+        editorState,
+        selectionState,
+    })
+}
+
 export default {
     init,
     deleteTag,
@@ -70,4 +80,5 @@ export default {
     updateNoteTitle,
     updateNoteTag,
     createNewNote,
+    updateNoteEditor,
 }
