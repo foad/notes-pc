@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
+import Select from 'react-select'
+
 import AppActions from '../actions/AppActions'
 
 import NotesMenu from './NotesMenu.jsx'
@@ -42,11 +44,24 @@ class Notes extends Component {
         AppActions.updateNoteTitle(this.state.selectedNote, event.target.value)
     }
 
+    getOptions() {
+        var options = []
+        for (var i = 0; i < this.state.tags.length; i++) {
+            options.push({ value: this.state.tags[i].id, label: '#' + this.state.tags[i].name })
+        }
+        return options
+    }
+
     getNoteContent() {
         return (
             <div className='notes'>
                 <input className='note__title' value={this.state.noteName} ref='titleInput' onChange={this.handleTitleChange.bind(this)} />
-                <p className='note__tag'>{ this.getTagName() }</p>
+                {(this.state.selectedNote == -1) ? '' : <Select
+                    name='notes-tag-select'
+                    value={this.state.noteTag}
+                    onChange={this.handleSelectChange}
+                    options={this.getOptions()}
+                />}
                 <NotesMenu />
                 <NoteEditor id={this.state.selectedNote} initialValue={this.state.noteText} />
             </div>

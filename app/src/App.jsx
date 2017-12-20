@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 
 import store from './store.js'
 
+import {} from 'react-select/dist/react-select.css';
 import {} from './styles/global.css'
 import {} from './styles/local.css'
 

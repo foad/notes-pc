@@ -49,6 +49,8 @@
     position: relative;
     cursor: pointer;
     padding-left: 24px;
+    padding-right: 40px;
+    overflow: hidden;
 }
 .tags li:hover{
     background-color: var(--primary-color);
@@ -248,4 +250,50 @@
 }
 .public-DraftEditor-content {
     height: 100%;
+}
+
+/**** REACT SELECT OVERRIDES ****/
+.Select-control {
+    background-color: transparent;
+    color: inherit;
+    border: 0;
+    border-radius: 0;
+    font-size: 12px;
+    height: 24px;
+    width: 256px;
+    text-overflow: ellipsis;
+}
+.Select.is-focused > .Select-control {
+    color: #FFFFFF;
+    background-color: var(--primary-color);
+}
+.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label, .Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+    color: inherit;
+}
+.Select.is-focused.has-value.Select--single > .Select-control .Select-value .Select-value-label, .Select.is-focused.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+    color: #FFFFFF;
+}
+.Select-menu::-webkit-scrollbar {
+    width: 0;
+}
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+    color: inherit;
+    padding-left: 16px;
+}
+.Select-menu-outer, .Select-option {
+    background-color: var(--primary-color-darker);
+    color: #FFFFFF;
+    border: 0;
+    border-radius: 0;
+    width: 256px;
+}
+.Select-option {
+    padding: 4px 16px 4px 16px;
+    font-size: 12px;
+}
+.Select-option.is-selected {
+    color: #FFFFFF;
+}
+.Select-clear-zone {
+    display: none;
 }
