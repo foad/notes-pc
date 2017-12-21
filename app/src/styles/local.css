@@ -355,13 +355,6 @@
     margin: auto 0;
     cursor: pointer;
     color: #FFFFFF;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.15s;
-}
-.login__input:hover .login__vision {
-    visibility: visible;
-    opacity: 1;
 }
 .login input {
     display: inline-block;
@@ -390,4 +383,20 @@
 }
 .login input[type='submit']:hover {
     background-color: var(--primary-color-darker);
+}
+.login__error {
+    background-color: #FF6666;
+    color: #FFFFFF;
+    width: 240px;
+    position: absolute;
+    bottom: 32px;
+    padding: 8px;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.1s;
+}
+.login__error.show {
+    opacity: 1;
+    visibility: visible;
 }

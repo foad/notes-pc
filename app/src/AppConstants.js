@@ -1,6 +1,6 @@
 import keymirror from 'keymirror'
 
-export default keymirror({
+var actions = keymirror({
     APP_DELETE_TAG : null,
     APP_SET_SELECTED_TAG : null,
     APP_SET_SELECTED_NOTE : null,
@@ -9,4 +9,10 @@ export default keymirror({
     APP_CREATE_NEW_NOTE : null,
     APP_UPDATE_NOTE_TAG : null,
     APP_UPDATE_NOTE_EDITOR : null,
+    APP_SET_TOKEN : null,
+    APP_SET_API_RESPONSE : null,
 })
+var consts = {
+    API_URL : 'https://danfoad.co.uk/notes/'
+}
+export default { ...actions, ...consts }

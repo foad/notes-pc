@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import store from '../store.js'
 
 import AppConstants from '../AppConstants'
@@ -71,6 +73,29 @@ const updateNoteEditor = (id, text, editorState, selectionState) => {
     })
 }
 
+const attemptLogin = (username, password) => {
+    axios.post(AppConstants.API_URL, {
+        method: 'start_session',
+        username: username,
+        password: password
+    })
+    .then((res) => {
+        if (res.data !== null && res.data !== '') {
+            store.dispatch({
+                type: AppConstants.APP_SET_TOKEN,
+                token: res.data,
+            })
+        }
+    })
+    .catch((err) => {
+        var res = err.response.data
+        store.dispatch({
+            type: AppConstants.APP_SET_API_RESPONSE,
+            apiResponse: res,
+        })
+    })
+}
+
 export default {
     init,
     deleteTag,
@@ -81,4 +106,5 @@ export default {
     updateNoteTag,
     createNewNote,
     updateNoteEditor,
+    attemptLogin,
 }

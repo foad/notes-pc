@@ -1,8 +1,10 @@
+import app from './app'
 import sidebar from './sidebar'
 import notesbar from './notesbar'
 import notes from './notes'
 
 const reducers = [
+    app,
     sidebar,
     notesbar,
     notes

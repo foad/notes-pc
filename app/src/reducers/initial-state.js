@@ -33,6 +33,7 @@ export default {
     selectedTag: -1,
     selectedNote: -1,
     token: '',
+    apiResponse: null,
     tags: [],
     notes: [],
     editorState,

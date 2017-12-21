@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-
-import store from './store.js'
+import { connect } from 'react-redux'
 
 import {} from 'react-select/dist/react-select.css';
 import {} from './styles/global.css'
@@ -14,11 +12,24 @@ import NotesBar from './components/NotesBar.jsx'
 import Notes from './components/Notes.jsx'
 import LoginView from './components/LoginView.jsx'
 
+class App extends Component {
 
-export default class App extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            token: props.token,
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            token: nextProps.token,
+        })
+    }
 
     getCurrentView() {
-        var token = store.getState().token;
+        var token = this.state.token
         if (token != '') {
             return (
                 <div className='main'>
@@ -41,10 +52,12 @@ export default class App extends Component {
     }
 
     render() {
-        return (
-            <Provider store={store}>
-                {this.getCurrentView()}
-            </Provider>
-        )
+        return this.getCurrentView()
     }
 }
+const mapStateToProps = state => {
+    return {
+        token: state.token,
+    }
+}
+export default connect(mapStateToProps)(App);

@@ -9,15 +9,26 @@ class LoginView extends Component {
         super(props)
 
         this.state = {
-            token: props.token,
+            apiResponse: props.apiResponse,
+            username: '',
+            password: '',
             visionIcon: 'eye',
         }
 
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.handleVisionClick = this.handleVisionClick.bind(this)
+        this.getErrorMessage = this.getErrorMessage.bind(this)
     }
 
-    handleSubmit() {
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            apiResponse: nextProps.apiResponse,
+        })
+    }
 
+    handleSubmit(event) {
+        event.preventDefault();
+        AppActions.attemptLogin(this.state.username, this.state.password)
     }
 
     handleVisionClick() {
@@ -30,28 +41,58 @@ class LoginView extends Component {
         }
     }
 
+    handleUsernameChange(event) {
+        this.setState({
+            username: event.target.value,
+            apiResponse: {},
+        })
+    }
+
+    handlePasswordChange(event) {
+        this.setState({
+            password: event.target.value,
+            apiResponse: {},
+        })
+    }
+
+    getErrorMessage() {
+        var response = { ...this.state.apiResponse }
+        var show = ''
+
+        if(response['message'] == null) {
+            response['message'] = ''
+        } else {
+            show = 'show'
+        }
+
+        return(
+            <div className={ 'login__error ' + show }>{response['message']}</div>
+        )
+    }
+
     render () {
         return (
             <div className='login'>
                 <form onSubmit={this.handleSubmit}>
                     <div className='login__input'>
                         <span className='login__icon'><i className='fa fa-user-o' /></span>
-                        <input type='text' />
+                        <input value={this.state.username} onChange={this.handleUsernameChange.bind(this)} type='text' />
                     </div>
                     <div className='login__input'>
                         <span className='login__icon'><i className='fa fa-key' /></span>
-                        <input ref={(vision) => { this.visionElement = vision; }} type='password' />
+                        <input value={this.state.password} onChange={this.handlePasswordChange.bind(this)} ref={(vision) => { this.visionElement = vision; }} type='password' />
                         <span className='login__vision' onClick={this.handleVisionClick}><i className={'fa fa-' + this.state.visionIcon} /></span>
                     </div>
                     <input type='submit' value='Log in' />
                 </form>
+                {this.getErrorMessage()}
             </div>
         )
     }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
-        token: state.token,
+        apiResponse: state.apiResponse,
     }
 }
-export default connect(mapStateToProps)(LoginView);
+export default connect(mapStateToProps)(LoginView)
