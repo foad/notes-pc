@@ -12,12 +12,15 @@ import MenuBar from './components/MenuBar.jsx'
 import SideBar from './components/SideBar.jsx'
 import NotesBar from './components/NotesBar.jsx'
 import Notes from './components/Notes.jsx'
+import LoginView from './components/LoginView.jsx'
 
 
 export default class App extends Component {
-    render() {
-        return (
-            <Provider store={store}>
+
+    getCurrentView() {
+        var token = store.getState().token;
+        if (token != '') {
+            return (
                 <div className='main'>
                     <MenuBar />
                     <div className='content'>
@@ -26,6 +29,21 @@ export default class App extends Component {
                         <Notes />
                     </div>
                 </div>
+            );
+        } else {
+            return (
+                <div className='main'>
+                    <MenuBar />
+                    <LoginView />
+                </div>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <Provider store={store}>
+                {this.getCurrentView()}
             </Provider>
         )
     }

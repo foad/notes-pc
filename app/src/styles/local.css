@@ -304,3 +304,90 @@
 .Select-clear-zone {
     display: none;
 }
+
+/**** LOGIN ****/
+.login {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    max-width: 360px;
+    max-height: 360px;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+   
+}
+.login form {
+    display: inline-flex;
+    flex-flow: column nowrap;
+}
+.login__input {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    position: relative;
+    align-items: center;
+    width: 240px;
+}
+.login__icon {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: var(--primary-color-darker);
+    font-size: 14px;
+}
+.login__vision {
+    display: inline-block;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    text-align: center;
+    line-height: 12px;
+    top: 0;
+    bottom: 0;
+    right: 8px;
+    margin: auto 0;
+    cursor: pointer;
+    color: #FFFFFF;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.15s;
+}
+.login__input:hover .login__vision {
+    visibility: visible;
+    opacity: 1;
+}
+.login input {
+    display: inline-block;
+    flex: 1;
+    margin: 8px 0;
+    height: 32px;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 0;
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    letter-spacing: 1px;
+}
+.login input:focus {
+    outline: none;
+}
+.login input[type='text'], .login input[type='password'] {
+    padding: 0 8px;
+}
+.login input[type='submit'] {
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: var(--primary-color-darkest);
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+.login input[type='submit']:hover {
+    background-color: var(--primary-color-darker);
+}

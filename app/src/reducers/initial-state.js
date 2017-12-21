@@ -2,7 +2,7 @@ import {EditorState} from 'draft-js'
 
 var editorState = EditorState.createEmpty()
 
-export default {
+var testData = {
     selectedTag: -1,
     selectedNote: -1,
     tags: [
@@ -27,3 +27,14 @@ export default {
     editorState,
     selectionState: editorState.getSelection(),
 };
+
+
+export default {
+    selectedTag: -1,
+    selectedNote: -1,
+    token: '',
+    tags: [],
+    notes: [],
+    editorState,
+    selectionState: editorState.getSelection(),
+}

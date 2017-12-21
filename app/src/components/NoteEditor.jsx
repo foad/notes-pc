@@ -8,7 +8,6 @@ export default class NoteEditor extends Component {
 
     constructor(props) {
         super(props);
-        //const initialEditorState = EditorState.createWithContent(ContentState.createFromText(props.initialValue))
         this.state = {
             editorState: props.editorState,
             selectionState: props.selectionState,
