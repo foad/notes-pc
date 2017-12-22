@@ -73,11 +73,14 @@ class NotesBar extends Component {
 
     newNote() {
         var noteIndex = this.getLatestNote(this.state.notes) + 1
+        var date = new Date().toISOString()
+        date = date.replace('T', ' ')
+        date = date.replace('Z', '')
         var note = {
             id: noteIndex,
             name: '',
-            tag: -1,
-            date: new Date().toISOString(),
+            tag: this.state.tags[0].id,
+            date: date,
             text: ''
         }
         AppActions.createNewNote(note)

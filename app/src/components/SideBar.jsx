@@ -52,7 +52,10 @@ class SideBar extends Component {
         // Loop through all notes and increment related tag
         for (var i = 0; i < this.state.noteTags.length; i++) {
             var tag = this.state.noteTags[i]
-            if (tag !== -1) this.state.tags.filter(t => t.id == tag)[0].count++
+            var matches = this.state.tags.filter(t => t.id == tag).length;
+            if (tag !== -1 && matches > 0) {
+                this.state.tags.filter(t => t.id == tag)[0].count++
+            }
         }
     }
 

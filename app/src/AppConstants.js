@@ -11,6 +11,8 @@ var actions = keymirror({
     APP_UPDATE_NOTE_EDITOR : null,
     APP_SET_TOKEN : null,
     APP_SET_API_RESPONSE : null,
+    APP_LOAD_NOTES : null,
+    APP_LOAD_TAGS : null,
 })
 var consts = {
     API_URL : 'https://danfoad.co.uk/notes/'

@@ -9,6 +9,14 @@ export default (state = {}, payload) => {
             }
         }
 
+        case (AppConstants.APP_LOAD_NOTES): {
+            console.log(payload.notes)
+            return {
+                ...state,
+                notes: payload.notes,
+            }
+        }
+
         case (AppConstants.APP_UPDATE_NOTE_TITLE): {
             const newState = { ...state }
             for (var i = 0; i < newState.notes.length; i++) {

@@ -6,6 +6,8 @@ import {} from 'react-select/dist/react-select.css';
 import {} from './styles/global.css'
 import {} from './styles/local.css'
 
+import AppActions from './actions/AppActions'
+
 import MenuBar from './components/MenuBar.jsx'
 import SideBar from './components/SideBar.jsx'
 import NotesBar from './components/NotesBar.jsx'
@@ -26,6 +28,7 @@ class App extends Component {
         this.setState({
             token: nextProps.token,
         })
+        AppActions.init()
     }
 
     getCurrentView() {
