@@ -78,6 +78,30 @@ const setSelectedNote = (id) => {
 }
 
 const setNoteText = (id, text) => {
+    var state = { ...store.getState() }
+    var token = state.token
+
+    var note
+    for (var i = 0; i < state.notes.length; i++) {
+        if (state.notes[i].id == id) {
+            note = state.notes[i]
+            note.text = text
+            break
+        }
+    }
+
+    axios.post(AppConstants.API_URL, {
+        method: 'update_note',
+        token: token,
+        note: note,
+    })
+    .then((res) => {
+        //console.log(res)
+    })
+    .catch((err) => {
+        console.error(err)
+    })
+
     store.dispatch({
         type: AppConstants.APP_SET_NOTE_TEXT,
         id,
@@ -117,6 +141,29 @@ const updateNoteTitle = (id, name) => {
 }
 
 const updateNoteTag = (id, tag) => {
+    var state = { ...store.getState() }
+    var token = state.token
+
+    var note
+    for (var i = 0; i < state.notes.length; i++) {
+        if (state.notes[i].id == id) {
+            note = state.notes[i]
+            note.tag = tag
+            break
+        }
+    }
+    
+    axios.post(AppConstants.API_URL, {
+        method: 'update_note',
+        token: token,
+        note: note,
+    })
+    .then((res) => {
+        //console.log(res)
+    })
+    .catch((err) => {
+        console.error(err)
+    })
     store.dispatch({
         type: AppConstants.APP_UPDATE_NOTE_TAG,
         id,
