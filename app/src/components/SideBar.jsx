@@ -73,7 +73,7 @@ class SideBar extends Component {
 
             // Click handler for individual tags
             let clickHandler = this.setSelectedTag.bind(this, tags[i].id)
-            //let renameHandler = this.startRenameTag.bind(this, tags[i].id)
+            let renameHandler = this.startRenameTag.bind(this, tags[i].id)
             let editHandler = this.continueRenameTag.bind(this, tags[i].id)
             let completeHandler = this.finishRenameTag.bind(this, tags[i].id)
             let deleteHandler = this.deleteTag.bind(this, tags[i].id)
@@ -91,7 +91,7 @@ class SideBar extends Component {
                         { tags[i].name }
                         <span className='tags__count'>{ tags[i].count }</span>
                         <br />
-                        <span className='tags__button' onClick={ () => { this.startRenameTag(tags[i].id) } }>Rename</span>
+                        <span className='tags__button' onClick={ renameHandler }>Rename</span>
                         <span className='tags__button' onClick={ deleteHandler }>Delete</span>
                     </li>
                 );
