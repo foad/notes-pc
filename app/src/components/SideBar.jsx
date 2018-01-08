@@ -14,6 +14,7 @@ class SideBar extends Component {
             tags: props.tags,
             noteTags:props.noteTags,
             noteTitles: props.noteTitles,
+            editingTag: -1,
         };
 
         this.getTags = this.getTags.bind(this);
@@ -74,7 +75,14 @@ class SideBar extends Component {
             let renameHandler = this.startRenameTag.bind(this, tags[i].id)
             let deleteHandler = this.deleteTag.bind(this, tags[i].id)
 
-            if (this.state.selectedTag == tags[i].id) { // If tag is selected
+            /*if (this.state.editingTag == tags[i].id) {
+                tagsHTML.push(
+                    <li className='selected' key={ tags[i].id } onClick={ clickHandler }>
+                        { tags[i].name }
+                        <span className='tags__count'>{ tags[i].count }</span>
+                    </li>
+                );
+            } else */if (this.state.selectedTag == tags[i].id) { // If tag is selected
                 tagsHTML.push(
                     <li className='selected' key={ tags[i].id } onClick={ clickHandler }>
                         { tags[i].name }

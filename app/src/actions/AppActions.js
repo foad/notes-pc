@@ -35,7 +35,6 @@ const init = () => {
     .then((res) => {
         if (res.data !== null && res.data !== '') {
             var notes = [ ...res.data ]
-            console.log(notes)
 
             for (var i = 0; i < notes.length; i++) {
                 notes[i].id = Number(notes[i].id)
@@ -236,6 +235,7 @@ export default {
     setNoteText,
     updateNoteTitle,
     updateNoteTag,
+    createNewTag,
     createNewNote,
     updateNoteEditor,
     attemptLogin,

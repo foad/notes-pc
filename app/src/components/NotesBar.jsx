@@ -79,17 +79,24 @@ class NotesBar extends Component {
         var note = {
             id: noteIndex,
             name: '',
-            tag: this.state.tags[0].id,
+            tag: this.state.selectedTag,
             date: date,
             text: ''
         }
         AppActions.createNewNote(note)
     }
 
+    getSelectedTagName() {
+        for (var i = 0; i < this.state.tags.length; i++) {
+            if (this.state.tags[i].id == this.state.selectedTag) return this.state.tags[i].name
+        }
+        return 'All Notes'
+    }
+
     render () {
         return (
             <div className='notesbar'>
-                <h2>business notes<span className='icon__button' onClick={ this.newNote }>+</span></h2>
+                <h2>{ this.getSelectedTagName() }<span className='icon__button' onClick={ this.newNote }>+</span></h2>
                 <SearchBar />
                 <NoteSort />
                 { this.getNoteSummaries() }

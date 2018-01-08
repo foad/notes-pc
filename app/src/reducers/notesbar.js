@@ -10,7 +10,6 @@ export default (state = {}, payload) => {
         }
 
         case (AppConstants.APP_LOAD_NOTES): {
-            console.log(payload.notes)
             return {
                 ...state,
                 notes: payload.notes,
