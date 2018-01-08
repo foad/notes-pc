@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 
 import AppActions from '../actions/AppActions.js'
 
+import Checkbox from './Checkbox.jsx'
+
 class LoginView extends Component {
 
     constructor(props) {
@@ -13,10 +15,12 @@ class LoginView extends Component {
             username: '',
             password: '',
             visionIcon: 'eye',
+            remember: false,
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleVisionClick = this.handleVisionClick.bind(this)
+        this.handleRememberClick = this.handleRememberClick.bind(this)
         this.getErrorMessage = this.getErrorMessage.bind(this)
     }
 
@@ -29,6 +33,8 @@ class LoginView extends Component {
     handleSubmit(event) {
         event.preventDefault();
         AppActions.attemptLogin(this.state.username, this.state.password)
+
+        if (this.state.remember) AppActions.saveCredentials(this.state.username, this.state.password)
     }
 
     handleVisionClick() {
@@ -39,6 +45,12 @@ class LoginView extends Component {
             this.setState({ ...this.state, visionIcon: 'eye' })
             this.visionElement.type = 'password'
         }
+    }
+
+    handleRememberClick(checked) {
+        this.setState({
+            remember: !checked,
+        })
     }
 
     handleUsernameChange(event) {
@@ -82,6 +94,9 @@ class LoginView extends Component {
                         <span className='login__icon'><i className='fa fa-key' /></span>
                         <input value={this.state.password} onChange={this.handlePasswordChange.bind(this)} ref={(vision) => { this.visionElement = vision; }} type='password' />
                         <span className='login__vision' onClick={this.handleVisionClick}><i className={'fa fa-' + this.state.visionIcon} /></span>
+                    </div>
+                    <div className='login__remember'>
+                        <Checkbox checked={this.state.remember} handleToggle={this.handleRememberClick}>Remember me</Checkbox>
                     </div>
                     <input type='submit' value='Log in' />
                 </form>

@@ -384,6 +384,21 @@
 .login input[type='submit']:hover {
     background-color: var(--primary-color-darker);
 }
+.login__checkbox {
+    width: 100%;
+    cursor: pointer;
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.login__checkbox i {
+    color: var(--primary-color);
+    width: 16px;
+}
+.login__label {
+    padding-left: 8px;
+    font-size: 0.9em;
+}
 .login__error {
     background-color: #FF6666;
     color: #FFFFFF;

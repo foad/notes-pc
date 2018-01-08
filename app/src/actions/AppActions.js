@@ -224,6 +224,10 @@ const attemptLogin = (username, password) => {
     })
 }
 
+const saveCredentials = (username, password) => {
+
+}
+
 export default {
     init,
     deleteTag,
@@ -235,4 +239,5 @@ export default {
     createNewNote,
     updateNoteEditor,
     attemptLogin,
+    saveCredentials,
 }
