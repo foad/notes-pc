@@ -15,6 +15,7 @@ class SideBar extends Component {
             noteTags:props.noteTags,
             noteTitles: props.noteTitles,
             editingTag: -1,
+            editingText: '',
         };
 
         this.getTags = this.getTags.bind(this);
@@ -72,23 +73,25 @@ class SideBar extends Component {
 
             // Click handler for individual tags
             let clickHandler = this.setSelectedTag.bind(this, tags[i].id)
-            let renameHandler = this.startRenameTag.bind(this, tags[i].id)
+            //let renameHandler = this.startRenameTag.bind(this, tags[i].id)
+            let editHandler = this.continueRenameTag.bind(this, tags[i].id)
+            let completeHandler = this.finishRenameTag.bind(this, tags[i].id)
             let deleteHandler = this.deleteTag.bind(this, tags[i].id)
 
-            /*if (this.state.editingTag == tags[i].id) {
+            if (this.state.editingTag == tags[i].id) {
                 tagsHTML.push(
-                    <li className='selected' key={ tags[i].id } onClick={ clickHandler }>
-                        { tags[i].name }
+                    <li className='editing' key={ tags[i].id } onClick={ clickHandler }>
+                        <input type='text' value={ tags[i].name } onChange={ editHandler } onBlur={ completeHandler } />
                         <span className='tags__count'>{ tags[i].count }</span>
                     </li>
                 );
-            } else */if (this.state.selectedTag == tags[i].id) { // If tag is selected
+            } else if (this.state.selectedTag == tags[i].id) { // If tag is selected
                 tagsHTML.push(
                     <li className='selected' key={ tags[i].id } onClick={ clickHandler }>
                         { tags[i].name }
                         <span className='tags__count'>{ tags[i].count }</span>
                         <br />
-                        <span className='tags__button' onClick={ renameHandler }>Rename</span>
+                        <span className='tags__button' onClick={ () => { this.startRenameTag(tags[i].id) } }>Rename</span>
                         <span className='tags__button' onClick={ deleteHandler }>Delete</span>
                     </li>
                 );
@@ -117,7 +120,23 @@ class SideBar extends Component {
     }
 
     startRenameTag(id) {
+        console.log(id)
+        this.setState({
+            editingTag: 50
+        }, () => {
+            console.log(this.state.editingTag)
+        })
+    }
 
+    continueRenameTag(id, event) {
+        var text = event.target.value
+        this.setState({
+            editingText: text,
+        })
+    }
+
+    finishRenameTag(id, event) {
+        
     }
 
     deleteTag(id) {
