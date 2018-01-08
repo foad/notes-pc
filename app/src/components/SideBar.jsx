@@ -20,8 +20,9 @@ class SideBar extends Component {
 
         this.getTags = this.getTags.bind(this);
         this.setSelectedTag = this.setSelectedTag.bind(this);
+        this.startRenameTag = this.startRenameTag.bind(this);
         this.toggleColourMode = this.toggleColourMode.bind(this);
-    }    
+    }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -73,7 +74,7 @@ class SideBar extends Component {
 
             // Click handler for individual tags
             let clickHandler = this.setSelectedTag.bind(this, tags[i].id)
-            let renameHandler = this.startRenameTag.bind(this, tags[i].id)
+            //let renameHandler = this.startRenameTag.bind(tags[i].id)
             let editHandler = this.continueRenameTag.bind(this, tags[i].id)
             let completeHandler = this.finishRenameTag.bind(this, tags[i].id)
             let deleteHandler = this.deleteTag.bind(this, tags[i].id)
@@ -120,11 +121,8 @@ class SideBar extends Component {
     }
 
     startRenameTag(id) {
-        console.log(id)
         this.setState({
-            editingTag: 50
-        }, () => {
-            console.log(this.state.editingTag)
+            editingTag: id
         })
     }
 
