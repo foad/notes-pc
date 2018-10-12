@@ -33,6 +33,14 @@ export default class Tag extends Component {
               }}
             />
             <span className="tags__count">{tag.count}</span>
+            <span
+              className="tags__button"
+              onClick={() => {
+                this.props.deleteTag(tag.id);
+              }}
+            >
+              ×
+            </span>
           </li>
         );
       case 'selected':

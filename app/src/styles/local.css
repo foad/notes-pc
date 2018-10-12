@@ -56,6 +56,7 @@
   height: 32px;
 }
 .tags li .tags__name:hover {
+  color: #ffffff;
   background-color: var(--primary-color-darker);
 }
 .tags li.selected .tags__name {

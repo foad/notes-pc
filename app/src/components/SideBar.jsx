@@ -77,6 +77,7 @@ class SideBar extends Component {
             setSelectedTag={this.props.setSelectedTag}
             setEditingTag={this.props.setEditingTag}
             setTagText={this.props.setTagText}
+            deleteTag={this.props.deleteTag}
           />
         );
       } else if (this.props.selectedTag === tag.id) {
