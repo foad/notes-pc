@@ -1,417 +1,431 @@
 /**** MENUBAR ****/
 .menubar {
-    height: 32px;
-    width: 100%;
-    -webkit-app-region: drag;
-    text-align: right;
+  height: 32px;
+  width: 100%;
+  -webkit-app-region: drag;
+  text-align: right;
 }
 .menubar i {
-    display: inline-block;
-    font-size: 12px;
-    width: 32px;
-    height: 24px;
-    text-align: center;
-    line-height: 24px;
-    cursor: pointer;
-    -webkit-app-region: no-drag;
-    position: relative;
-    top: -1px;
+  display: inline-block;
+  font-size: 12px;
+  width: 32px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  position: relative;
+  top: -1px;
 }
 .menubar i:hover {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 .menubar i.smaller {
-    font-size: 9px;
-    top: -2px;
+  font-size: 9px;
+  top: -2px;
 }
 
 /**** SIDEBAR ****/
 .sidebar {
-    flex-basis: 208px;
-    display: inline-flex;
-    flex-flow: column nowrap;
+  flex-basis: 208px;
+  display: inline-flex;
+  flex-flow: column nowrap;
 }
 .sidebar h2 {
-    position: relative;
-    padding-left: 24px;
+  position: relative;
+  padding-left: 24px;
 }
 .tags {
-    list-style: none;
-    display: inline-flex;
-    flex-flow: column nowrap;
-    flex: 1;
-    margin-top: 24px;
-    font-size: 14px;
+  list-style: none;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  flex: 1;
+  margin-top: 24px;
+  font-size: 14px;
 }
 .tags li {
-    height: 32px;
-    line-height: 32px;
-    position: relative;
-    cursor: pointer;
-    padding-left: 24px;
-    padding-right: 40px;
-    overflow: hidden;
+  height: 32px;
+  line-height: 32px;
+  position: relative;
+  cursor: pointer;
+  padding-left: 24px;
+  padding-right: 40px;
+  overflow: hidden;
 }
-.tags li:hover{
-    background-color: var(--primary-color);
+.tags li:hover {
+  background-color: var(--primary-color);
 }
 .tags__count {
-    position: absolute;
-    top: 0;
-    right: 24px;
-    color: var(--primary-color);
-    font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 24px;
+  color: var(--primary-color);
+  font-weight: bold;
 }
 .tags li:hover .tags__count {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 .tags__button {
-    color: var(--primary-color-darker);
-    font-size: 10px;
-    font-weight: bold;
-    position: relative;
-    top: -14px;
-    margin-right: 4px;
-    cursor: pointer;
+  color: var(--primary-color-darker);
+  font-size: 10px;
+  font-weight: bold;
+  position: relative;
+  top: -14px;
+  margin-right: 4px;
+  cursor: pointer;
 }
 .tags li:hover .tags__button {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 .tags .selected {
-    height: 48px;
+  height: 48px;
 }
 .colourmode {
-    margin: 12px;
-    width: 24px;
-    height: 24px;
-    line-height: 24px;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  margin: 12px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 .colourmode:hover {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 
 /**** NOTESBAR ****/
 .notesbar {
-    flex-basis:288px;
-    display: inline-flex;
-    flex-flow: column nowrap;
+  flex-basis: 288px;
+  display: inline-flex;
+  flex-flow: column nowrap;
 }
-.notesbar  h2 {
-    position: relative;
-    padding-left: 24px;
-    font-size: 16px;
-    font-weight: normal;
+.notesbar h2 {
+  position: relative;
+  padding-left: 24px;
+  font-size: 16px;
+  font-weight: normal;
 }
 .searchbar {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 .searchbar input {
-    display: inline-block;
-    width: 100%;
-    height: 48px;
-    text-align: center;
-    border: 0;
-    background-color: transparent;
-    border-radius: 0;
-    -webkit-appearance: none;
-    color: #FFFFFF;
-    font-size: 16px;
+  display: inline-block;
+  width: 100%;
+  height: 48px;
+  text-align: center;
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  -webkit-appearance: none;
+  color: #ffffff;
+  font-size: 16px;
 }
-.searchbar input:focus, .searchbox input:hover {
-    outline: none;
+.searchbar input:focus,
+.searchbox input:hover {
+  outline: none;
 }
 .notesort {
-    background-color: var(--primary-color);
-    height: 28px;
-    line-height: 28px;
-    color: #FFFFFF;
-    margin-bottom: 8px;
+  background-color: var(--primary-color);
+  height: 28px;
+  line-height: 28px;
+  color: #ffffff;
+  margin-bottom: 8px;
 }
 .notesort h2 {
-    font-weight: bold;
-    font-size: 12px;
-    letter-spacing: 0.5px;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 0.5px;
 }
 .notesummaries {
-    display: inline-flex;
-    flex: 1;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    overflow-y: scroll;
+  display: inline-flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  overflow-y: scroll;
 }
 .notesummaries::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
 .notesummary {
-    margin: 6px  0;
-    padding: 8px 16px;
-    cursor: pointer;
+  margin: 6px 0;
+  padding: 8px 16px;
+  cursor: pointer;
 }
 .notesummary.selected {
-    background-color: var(--primary-color-darker);
-    color: #FFFFFF;
-}
-.notesummary.selected h3 {
-    font-weight: normal;
+  background-color: var(--primary-color-darker);
+  color: #ffffff;
 }
 .notesummary h3 {
-    font-size: 14px;
+  font-size: 14px;
 }
 .notesummary p {
-    white-space: nowrap;
-    max-width: 256px;
-    overflow: hidden;
-    height: 20px;
-    line-height: 20px;
-    font-size: 13px;
-    text-overflow: ellipsis;
-    font-weight: 100;
+  white-space: nowrap;
+  max-width: 256px;
+  overflow: hidden;
+  height: 20px;
+  line-height: 20px;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  font-weight: 100;
 }
 .notesummary__date {
-    font-size: 11px;
+  font-size: 11px;
 }
 
 /**** NOTES ****/
 .notes {
-    flex: 1;
-    display: inline-flex;
-    flex-flow: column nowrap;
-    align-items: stretch;
-    overflow: hidden;
+  flex: 1;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  overflow: hidden;
 }
 .note__title {
-    font-size: 16px;
-    padding-left: 16px;
-    -webkit-appearance: none;
-    border: 0;
-    background-color: transparent;
-    display: inline-block;
-    color: inherit;
-    font-weight: bold;
+  font-size: 16px;
+  padding-left: 16px;
+  -webkit-appearance: none;
+  border: 0;
+  background-color: transparent;
+  display: inline-block;
+  color: inherit;
+  font-weight: bold;
 }
 .note__title ::selection {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 .note__title:focus {
-    outline: none;
+  outline: none;
 }
 .note__tag {
-    font-size: 12px;
-    padding-left: 16px;
+  font-size: 12px;
+  padding-left: 16px;
 }
 .notesmenu {
-    background-color: var(--primary-color);
-    height: 24px;
-    line-height: 21px;
-    padding-left: 8px;
-    margin-top: 12px;
+  background-color: var(--primary-color);
+  height: 24px;
+  line-height: 21px;
+  padding-left: 8px;
+  margin-top: 12px;
 }
 .notesmenu button {
-    -webkit-appearance: none;
-    border: 0;
-    background-color: transparent;
-    border-radius: 0;
-    color: #FFFFFF;
-    font-weight: bold;
-    padding: 4px 8px;
-    font-size: 12px;
-    cursor: pointer;
-    height: 100%;
-    transition: background-color 0.1s;
+  -webkit-appearance: none;
+  border: 0;
+  background-color: transparent;
+  border-radius: 0;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 12px;
+  cursor: pointer;
+  height: 100%;
+  transition: background-color 0.1s;
 }
 .notesmenu button:hover {
-    background-color: var(--primary-color-darker);
+  background-color: var(--primary-color-darker);
 }
 .notesmenu button:focus {
-    outline: none;
+  outline: none;
 }
 .DraftEditor-root {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    padding: 16px;
-    font-size: 14px;
-    font-family: 'Consolas', monospace;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 16px;
+  font-size: 14px;
+  font-family: "Consolas", monospace;
 }
 .DraftEditor-root ::selection {
-    background-color: var(--primary-color);
-    color: #FFFFFF;
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 .DraftEditor-root::-webkit-scrollbar {
-    width: 0;
+  width: 0;
 }
 .DraftEditor-editorContainer {
-    height: 100%;
+  height: 100%;
 }
 .public-DraftEditor-content {
-    height: 100%;
+  height: 100%;
 }
 
 /**** REACT SELECT OVERRIDES ****/
 .Select-control {
-    background-color: transparent;
-    color: inherit;
-    border: 0;
-    border-radius: 0;
-    font-size: 12px;
-    height: 24px;
-    width: 256px;
-    text-overflow: ellipsis;
+  background-color: transparent;
+  color: inherit;
+  border: 0;
+  border-radius: 0;
+  font-size: 12px;
+  height: 24px;
+  width: 256px;
+  text-overflow: ellipsis;
 }
 .Select.is-focused > .Select-control {
-    color: #FFFFFF;
-    background-color: var(--primary-color);
+  color: #ffffff;
+  background-color: var(--primary-color);
 }
-.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label, .Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
-    color: inherit;
+.Select.has-value.Select--single
+  > .Select-control
+  .Select-value
+  .Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single
+  > .Select-control
+  .Select-value
+  .Select-value-label {
+  color: inherit;
 }
-.Select.is-focused.has-value.Select--single > .Select-control .Select-value .Select-value-label, .Select.is-focused.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
-    color: #FFFFFF;
+.Select.is-focused.has-value.Select--single
+  > .Select-control
+  .Select-value
+  .Select-value-label,
+.Select.is-focused.has-value.is-pseudo-focused.Select--single
+  > .Select-control
+  .Select-value
+  .Select-value-label {
+  color: #ffffff;
 }
 .Select.is-focused:not(.is-open) > .Select-control {
-    background-color: transparent;
-    outline: none;
-    border-color: transparent;
-    box-shadow: none;
-    color: inherit;
+  background-color: transparent;
+  outline: none;
+  border-color: transparent;
+  box-shadow: none;
+  color: inherit;
 }
 .Select-menu::-webkit-scrollbar {
-    width: 0;
+  width: 0;
 }
-.Select-placeholder, .Select--single > .Select-control .Select-value {
-    color: inherit;
-    padding-left: 16px;
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
+  color: inherit;
+  padding-left: 16px;
 }
-.Select-menu-outer, .Select-option {
-    background-color: var(--primary-color-darker);
-    color: #FFFFFF;
-    border: 0;
-    border-radius: 0;
-    width: 256px;
+.Select-menu-outer,
+.Select-option {
+  background-color: var(--primary-color-darker);
+  color: #ffffff;
+  border: 0;
+  border-radius: 0;
+  width: 256px;
 }
 .Select-option {
-    padding: 4px 16px 4px 16px;
-    font-size: 12px;
+  padding: 4px 16px 4px 16px;
+  font-size: 12px;
 }
 .Select-option.is-selected {
-    color: #FFFFFF;
+  color: #ffffff;
 }
 .Select-clear-zone {
-    display: none;
+  display: none;
 }
 
 /**** LOGIN ****/
 .login {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    margin: auto;
-    display: inline-flex;
-    flex-flow: column nowrap;
-    max-width: 360px;
-    max-height: 360px;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-   
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  max-width: 360px;
+  max-height: 360px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
 }
 .login form {
-    display: inline-flex;
-    flex-flow: column nowrap;
+  display: inline-flex;
+  flex-flow: column nowrap;
 }
 .login__input {
-    display: inline-flex;
-    flex-flow: row nowrap;
-    position: relative;
-    align-items: center;
-    width: 240px;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  position: relative;
+  align-items: center;
+  width: 240px;
 }
 .login__icon {
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    color: #FFFFFF;
-    background-color: var(--primary-color-darker);
-    font-size: 14px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  color: #ffffff;
+  background-color: var(--primary-color-darker);
+  font-size: 14px;
 }
 .login__vision {
-    display: inline-block;
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    text-align: center;
-    line-height: 12px;
-    top: 0;
-    bottom: 0;
-    right: 8px;
-    margin: auto 0;
-    cursor: pointer;
-    color: #FFFFFF;
+  display: inline-block;
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  text-align: center;
+  line-height: 12px;
+  top: 0;
+  bottom: 0;
+  right: 8px;
+  margin: auto 0;
+  cursor: pointer;
+  color: #ffffff;
 }
 .login input {
-    display: inline-block;
-    flex: 1;
-    margin: 8px 0;
-    height: 32px;
-    -webkit-appearance: none;
-    border: 0;
-    border-radius: 0;
-    background-color: var(--primary-color);
-    color: #FFFFFF;
-    letter-spacing: 1px;
+  display: inline-block;
+  flex: 1;
+  margin: 8px 0;
+  height: 32px;
+  -webkit-appearance: none;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  letter-spacing: 1px;
 }
 .login input:focus {
-    outline: none;
+  outline: none;
 }
-.login input[type='text'], .login input[type='password'] {
-    padding: 0 8px;
+.login input[type="text"],
+.login input[type="password"] {
+  padding: 0 8px;
 }
-.login input[type='submit'] {
-    text-transform: uppercase;
-    font-weight: bold;
-    background-color: var(--primary-color-darkest);
-    cursor: pointer;
-    transition: background-color 0.1s;
+.login input[type="submit"] {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: var(--primary-color-darkest);
+  cursor: pointer;
+  transition: background-color 0.1s;
 }
-.login input[type='submit']:hover {
-    background-color: var(--primary-color-darker);
+.login input[type="submit"]:hover {
+  background-color: var(--primary-color-darker);
 }
 .login__checkbox {
-    width: 100%;
-    cursor: pointer;
-    display: inline-flex;
-    flex-flow: row nowrap;
-    align-items: center;
+  width: 100%;
+  cursor: pointer;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 .login__checkbox i {
-    color: var(--primary-color);
-    width: 16px;
+  color: var(--primary-color);
+  width: 16px;
 }
 .login__label {
-    padding-left: 8px;
-    font-size: 0.9em;
+  padding-left: 8px;
+  font-size: 0.9em;
 }
 .login__error {
-    background-color: #FF6666;
-    color: #FFFFFF;
-    width: 240px;
-    position: absolute;
-    bottom: 32px;
-    padding: 8px;
-    text-align: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.1s;
+  background-color: #ff6666;
+  color: #ffffff;
+  width: 240px;
+  position: absolute;
+  bottom: 32px;
+  padding: 8px;
+  text-align: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.1s;
 }
 .login__error.show {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
