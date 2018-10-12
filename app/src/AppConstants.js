@@ -1,8 +1,11 @@
 import keymirror from "keymirror";
 
-var actions = keymirror({
+let actions = keymirror({
+  APP_CREATE_NEW_TAG: null,
   APP_DELETE_TAG: null,
   APP_SET_SELECTED_TAG: null,
+  APP_SET_EDITING_TAG: null,
+  APP_SET_TAG_TEXT: null,
   APP_SET_SELECTED_NOTE: null,
   APP_SET_NOTE_TEXT: null,
   APP_UPDATE_NOTE_TITLE: null,
@@ -14,7 +17,7 @@ var actions = keymirror({
   APP_LOAD_NOTES: null,
   APP_LOAD_TAGS: null
 });
-var consts = {
+let consts = {
   API_URL: "https://danfoad.co.uk/notes/"
 };
 export default { ...actions, ...consts };

@@ -1,22 +1,22 @@
-import axios from "axios";
+import axios from 'axios';
 
-import store from "../store.js";
+import store from '../store.js';
 
-import AppConstants from "../AppConstants";
+import AppConstants from '../AppConstants';
 
 const init = () => {
-  var token = store.getState().token;
+  let token = store.getState().token;
 
   axios
     .post(AppConstants.API_URL, {
-      method: "get_tags",
+      method: 'get_tags',
       token: token
     })
     .then(res => {
-      if (res.data !== null && res.data !== "") {
-        var tags = [...res.data];
+      if (res.data !== null && res.data !== '') {
+        let tags = [...res.data];
 
-        for (var i = 0; i < tags.length; i++) {
+        for (let i = 0; i < tags.length; i++) {
           tags[i].id = Number(tags[i].id);
         }
         store.dispatch({
@@ -31,14 +31,14 @@ const init = () => {
 
   axios
     .post(AppConstants.API_URL, {
-      method: "get_notes",
+      method: 'get_notes',
       token: token
     })
     .then(res => {
-      if (res.data !== null && res.data !== "") {
-        var notes = [...res.data];
+      if (res.data !== null && res.data !== '') {
+        let notes = [...res.data];
 
-        for (var i = 0; i < notes.length; i++) {
+        for (let i = 0; i < notes.length; i++) {
           notes[i].id = Number(notes[i].id);
         }
 
@@ -53,20 +53,39 @@ const init = () => {
     });
 };
 
-const createNewTag = name => {};
-
-const deleteTag = id => {
-  store.dispatch({
-    type: AppConstants.APP_DELETE_TAG,
-    id
-  });
-};
-
-const setSelectedTag = id => {
-  store.dispatch({
+export const setSelectedTag = id => {
+  return {
     type: AppConstants.APP_SET_SELECTED_TAG,
     id
-  });
+  };
+};
+
+export const setEditingTag = id => {
+  return {
+    type: AppConstants.APP_SET_EDITING_TAG,
+    id
+  };
+};
+
+export const setTagText = (id, text) => {
+  return {
+    type: AppConstants.APP_SET_TAG_TEXT,
+    id,
+    text
+  };
+};
+
+export const deleteTag = id => {
+  return {
+    type: AppConstants.APP_DELETE_TAG,
+    id
+  };
+};
+
+export const createTag = () => {
+  return {
+    type: AppConstants.APP_CREATE_NEW_TAG
+  };
 };
 
 const setSelectedNote = id => {
@@ -77,11 +96,11 @@ const setSelectedNote = id => {
 };
 
 const setNoteText = (id, text) => {
-  var state = { ...store.getState() };
-  var token = state.token;
+  let state = { ...store.getState() };
+  let token = state.token;
 
-  var note;
-  for (var i = 0; i < state.notes.length; i++) {
+  let note;
+  for (let i = 0; i < state.notes.length; i++) {
     if (state.notes[i].id == id) {
       note = state.notes[i];
       note.text = text;
@@ -91,7 +110,7 @@ const setNoteText = (id, text) => {
 
   axios
     .post(AppConstants.API_URL, {
-      method: "update_note",
+      method: 'update_note',
       token: token,
       note: note
     })
@@ -110,11 +129,11 @@ const setNoteText = (id, text) => {
 };
 
 const updateNoteTitle = (id, name) => {
-  var state = { ...store.getState() };
-  var token = state.token;
+  let state = { ...store.getState() };
+  let token = state.token;
 
-  var note;
-  for (var i = 0; i < state.notes.length; i++) {
+  let note;
+  for (let i = 0; i < state.notes.length; i++) {
     if (state.notes[i].id == id) {
       note = state.notes[i];
       note.name = name;
@@ -124,7 +143,7 @@ const updateNoteTitle = (id, name) => {
 
   axios
     .post(AppConstants.API_URL, {
-      method: "update_note",
+      method: 'update_note',
       token: token,
       note: note
     })
@@ -142,11 +161,11 @@ const updateNoteTitle = (id, name) => {
 };
 
 const updateNoteTag = (id, tag) => {
-  var state = { ...store.getState() };
-  var token = state.token;
+  let state = { ...store.getState() };
+  let token = state.token;
 
-  var note;
-  for (var i = 0; i < state.notes.length; i++) {
+  let note;
+  for (let i = 0; i < state.notes.length; i++) {
     if (state.notes[i].id == id) {
       note = state.notes[i];
       note.tag = tag;
@@ -156,7 +175,7 @@ const updateNoteTag = (id, tag) => {
 
   axios
     .post(AppConstants.API_URL, {
-      method: "update_note",
+      method: 'update_note',
       token: token,
       note: note
     })
@@ -174,11 +193,11 @@ const updateNoteTag = (id, tag) => {
 };
 
 const createNewNote = note => {
-  var token = store.getState().token;
+  let token = store.getState().token;
 
   axios
     .post(AppConstants.API_URL, {
-      method: "create_note",
+      method: 'create_note',
       token: token,
       note: note
     })
@@ -207,12 +226,12 @@ const updateNoteEditor = (id, text, editorState, selectionState) => {
 const attemptLogin = (username, password) => {
   axios
     .post(AppConstants.API_URL, {
-      method: "start_session",
+      method: 'start_session',
       username: username,
       password: password
     })
     .then(res => {
-      if (res.data !== null && res.data !== "") {
+      if (res.data !== null && res.data !== '') {
         store.dispatch({
           type: AppConstants.APP_SET_TOKEN,
           token: res.data
@@ -220,7 +239,7 @@ const attemptLogin = (username, password) => {
       }
     })
     .catch(err => {
-      var res = err.response.data;
+      let res = err.response.data;
       store.dispatch({
         type: AppConstants.APP_SET_API_RESPONSE,
         apiResponse: res
@@ -238,7 +257,6 @@ export default {
   setNoteText,
   updateNoteTitle,
   updateNoteTag,
-  createNewTag,
   createNewNote,
   updateNoteEditor,
   attemptLogin,

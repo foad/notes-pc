@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import AppActions from "../actions/AppActions.js";
+import AppActions from '../actions/AppActions.js';
 
-import Checkbox from "./Checkbox.jsx";
+import Checkbox from './Checkbox.jsx';
 
 class LoginView extends Component {
   constructor(props) {
@@ -11,9 +11,9 @@ class LoginView extends Component {
 
     this.state = {
       apiResponse: props.apiResponse,
-      username: "",
-      password: "",
-      visionIcon: "eye",
+      username: '',
+      password: '',
+      visionIcon: 'eye',
       remember: false
     };
 
@@ -38,12 +38,12 @@ class LoginView extends Component {
   }
 
   handleVisionClick() {
-    if (this.state.visionIcon == "eye") {
-      this.setState({ ...this.state, visionIcon: "eye-slash" });
-      this.visionElement.type = "text";
+    if (this.state.visionIcon == 'eye') {
+      this.setState({ ...this.state, visionIcon: 'eye-slash' });
+      this.visionElement.type = 'text';
     } else {
-      this.setState({ ...this.state, visionIcon: "eye" });
-      this.visionElement.type = "password";
+      this.setState({ ...this.state, visionIcon: 'eye' });
+      this.visionElement.type = 'password';
     }
   }
 
@@ -68,16 +68,16 @@ class LoginView extends Component {
   }
 
   getErrorMessage() {
-    var response = { ...this.state.apiResponse };
-    var show = "";
+    let response = { ...this.state.apiResponse };
+    let show = '';
 
-    if (response["message"] == null) {
-      response["message"] = "";
+    if (response['message'] == null) {
+      response['message'] = '';
     } else {
-      show = "show";
+      show = 'show';
     }
 
-    return <div className={"login__error " + show}>{response["message"]}</div>;
+    return <div className={'login__error ' + show}>{response['message']}</div>;
   }
 
   render() {
@@ -107,7 +107,7 @@ class LoginView extends Component {
               type="password"
             />
             <span className="login__vision" onClick={this.handleVisionClick}>
-              <i className={"fa fa-" + this.state.visionIcon} />
+              <i className={'fa fa-' + this.state.visionIcon} />
             </span>
           </div>
           <div className="login__remember">

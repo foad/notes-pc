@@ -45,12 +45,12 @@ class NotesBar extends Component {
   }
 
   getNoteSummaries() {
-    var taggedNotes = this.getTaggedNotes();
+    let taggedNotes = this.getTaggedNotes();
 
-    var notesummaries = [];
+    let notesummaries = [];
 
-    for (var i = 0; i < taggedNotes.length; i++) {
-      var clickHandler = this.setSelectedNote.bind(this, taggedNotes[i].id);
+    for (let i = 0; i < taggedNotes.length; i++) {
+      let clickHandler = this.setSelectedNote.bind(this, taggedNotes[i].id);
 
       notesummaries.push(
         <div
@@ -78,19 +78,19 @@ class NotesBar extends Component {
   }
 
   getLatestNote(notes) {
-    var largestID = -1;
-    for (var i = 0; i < notes.length; i++) {
+    let largestID = -1;
+    for (let i = 0; i < notes.length; i++) {
       if (notes[i].id > largestID) largestID = notes[i].id;
     }
     return largestID;
   }
 
   newNote() {
-    var noteIndex = this.getLatestNote(this.state.notes) + 1;
-    var date = new Date().toISOString();
+    let noteIndex = this.getLatestNote(this.state.notes) + 1;
+    let date = new Date().toISOString();
     date = date.replace("T", " ");
     date = date.replace("Z", "");
-    var note = {
+    let note = {
       id: noteIndex,
       name: "",
       tag: this.state.selectedTag,
@@ -101,7 +101,7 @@ class NotesBar extends Component {
   }
 
   getSelectedTagName() {
-    for (var i = 0; i < this.state.tags.length; i++) {
+    for (let i = 0; i < this.state.tags.length; i++) {
       if (this.state.tags[i].id == this.state.selectedTag)
         return this.state.tags[i].name;
     }
@@ -125,7 +125,7 @@ class NotesBar extends Component {
   }
 }
 const mapStateToProps = state => {
-  var noteTags = state.notes.map(n => n.tag);
+  let noteTags = state.notes.map(n => n.tag);
   return {
     selectedTag: state.selectedTag,
     tags: state.tags,

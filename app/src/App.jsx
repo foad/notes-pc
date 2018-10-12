@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   getCurrentView() {
-    var token = this.state.token;
+    let token = this.state.token;
     if (token != "") {
       return (
         <div className="main">

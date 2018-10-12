@@ -44,16 +44,32 @@
   font-size: 14px;
 }
 .tags li {
-  height: 32px;
+  min-height: 32px;
   line-height: 32px;
   position: relative;
   cursor: pointer;
-  padding-left: 24px;
-  padding-right: 40px;
-  overflow: hidden;
 }
-.tags li:hover {
+.tags .tags__name {
+  display: inline-block;
+  width: 100%;
+  padding-left: 24px;
+  height: 32px;
+}
+.tags li .tags__name:hover {
+  background-color: var(--primary-color-darker);
+}
+.tags li.selected .tags__name {
+  background: var(--primary-color);
+  color: #ffffff;
+}
+.tags li.editing input.tags__name {
+  border: 0;
   background-color: var(--primary-color);
+  outline: 0;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: inherit;
+  padding-bottom: 1px;
 }
 .tags__count {
   position: absolute;
@@ -62,23 +78,23 @@
   color: var(--primary-color);
   font-weight: bold;
 }
-.tags li:hover .tags__count {
+.tags li:hover .tags__count,
+.tags li.selected .tags__count,
+.tags li.editing .tags__count {
   color: #ffffff;
 }
 .tags__button {
-  color: var(--primary-color-darker);
-  font-size: 10px;
-  font-weight: bold;
-  position: relative;
-  top: -14px;
-  margin-right: 4px;
-  cursor: pointer;
-}
-.tags li:hover .tags__button {
   color: #ffffff;
+  font-size: 14px;
+  position: absolute;
+  cursor: pointer;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
-.tags .selected {
-  height: 48px;
+.tags__button:hover {
+  color: var(--primary-color-darker);
 }
 .colourmode {
   margin: 12px;
@@ -234,7 +250,7 @@
   overflow: auto;
   padding: 16px;
   font-size: 14px;
-  font-family: "Consolas", monospace;
+  font-family: 'Consolas', monospace;
 }
 .DraftEditor-root ::selection {
   background-color: var(--primary-color);
@@ -384,18 +400,18 @@
 .login input:focus {
   outline: none;
 }
-.login input[type="text"],
-.login input[type="password"] {
+.login input[type='text'],
+.login input[type='password'] {
   padding: 0 8px;
 }
-.login input[type="submit"] {
+.login input[type='submit'] {
   text-transform: uppercase;
   font-weight: bold;
   background-color: var(--primary-color-darkest);
   cursor: pointer;
   transition: background-color 0.1s;
 }
-.login input[type="submit"]:hover {
+.login input[type='submit']:hover {
   background-color: var(--primary-color-darker);
 }
 .login__checkbox {

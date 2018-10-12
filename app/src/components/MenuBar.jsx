@@ -12,7 +12,7 @@ export default class MenuBar extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    var window = remote.BrowserWindow.getFocusedWindow();
+    let window = remote.BrowserWindow.getFocusedWindow();
     if (nextState.maximizeAction == "maximize") {
       window.restore();
     } else {
@@ -21,7 +21,7 @@ export default class MenuBar extends Component {
   }
 
   minimize() {
-    var window = remote.BrowserWindow.getFocusedWindow();
+    let window = remote.BrowserWindow.getFocusedWindow();
     window.minimize();
   }
 
@@ -34,7 +34,7 @@ export default class MenuBar extends Component {
   }
 
   close() {
-    var window = remote.BrowserWindow.getFocusedWindow();
+    let window = remote.BrowserWindow.getFocusedWindow();
     window.close();
   }
 

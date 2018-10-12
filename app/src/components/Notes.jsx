@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import Select from "react-select";
+import Select from 'react-select';
 
-import AppActions from "../actions/AppActions";
+import AppActions from '../actions/AppActions';
 
-import NotesMenu from "./NotesMenu.jsx";
-import NoteEditor from "./NoteEditor.jsx";
+import NotesMenu from './NotesMenu.jsx';
+import NoteEditor from './NoteEditor.jsx';
 
 class Notes extends Component {
   constructor(props) {
@@ -39,8 +39,8 @@ class Notes extends Component {
   }
 
   getTagName() {
-    if (this.state.noteTag == -1) return "";
-    return "#" + this.state.tags.find(tag => tag.id == this.state.noteTag).name;
+    if (this.state.noteTag == -1) return '';
+    return '#' + this.state.tags.find(tag => tag.id == this.state.noteTag).name;
   }
 
   handleTitleChange(event) {
@@ -52,11 +52,11 @@ class Notes extends Component {
   }
 
   getOptions() {
-    var options = [];
-    for (var i = 0; i < this.state.tags.length; i++) {
+    let options = [];
+    for (let i = 0; i < this.state.tags.length; i++) {
       options.push({
         value: this.state.tags[i].id,
-        label: "#" + this.state.tags[i].name
+        label: '#' + this.state.tags[i].name
       });
     }
     return options;
@@ -72,7 +72,7 @@ class Notes extends Component {
           onChange={this.handleTitleChange.bind(this)}
         />
         {this.state.selectedNote == -1 ? (
-          ""
+          ''
         ) : (
           <Select
             name="notes-tag-select"
@@ -97,11 +97,11 @@ class Notes extends Component {
   }
 }
 const mapStateToProps = state => {
-  var selectedNoteVal = state.notes.find(note => {
+  let selectedNoteVal = state.notes.find(note => {
     return note.id == state.selectedNote;
   });
   if (selectedNoteVal === undefined)
-    selectedNoteVal = { id: -1, name: "", tag: -1, text: "" };
+    selectedNoteVal = { id: -1, name: '', tag: -1, text: '' };
   return {
     selectedNote: selectedNoteVal.id,
     noteName: selectedNoteVal.name,
