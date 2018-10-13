@@ -93,9 +93,10 @@
   top: 0;
   bottom: 0;
   margin: auto;
+  transition: color 0.2s;
 }
 .tags__button:hover {
-  color: var(--primary-color-darker);
+  color: rgba(255, 255, 255, 0.6);
 }
 .colourmode {
   margin: 12px;

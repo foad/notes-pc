@@ -61,11 +61,9 @@ class SideBar extends Component {
   }
 
   getTags() {
-    const tags = this.props.tags;
-
     const allCount = this.state.noteTags.length;
     this.getCounts();
-
+    
     // Loop through each tag
     const tagsHTML = this.props.tags.map(tag => {
       if (this.props.editingTag === tag.id) {

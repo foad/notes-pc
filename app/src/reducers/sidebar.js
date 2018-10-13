@@ -50,7 +50,7 @@ export default (state = {}, payload) => {
       const id = Math.max.apply(Math, state.tags.map(tag => tag.id)) + 1;
       return {
         ...state,
-        tags: [...state.tags, { id, name: '[untitled]' }],
+        tags: [...state.tags, { id, name: '' }],
         editingTag: id,
         selectedTag: id
       };

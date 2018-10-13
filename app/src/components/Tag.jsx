@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 export default class Tag extends Component {
+  componentDidMount() {
+    if (!this.input) return;
+    this.input.focus();
+  }
+
   componentDidUpdate() {
     if (!this.input) return;
     this.input.focus();
@@ -51,7 +56,7 @@ export default class Tag extends Component {
               this.props.setEditingTag(tag.id);
             }}
           >
-            <span className="tags__name">{tag.name}</span>
+            <span className="tags__name">{tag.name === '' ? '[untitled]' : tag.name}</span>
             <span className="tags__count">{tag.count}</span>
             <span
               className="tags__button"
@@ -70,7 +75,7 @@ export default class Tag extends Component {
               this.props.setSelectedTag(tag.id);
             }}
           >
-            <span className="tags__name">{tag.name}</span>
+            <span className="tags__name">{tag.name === '' ? '[untitled]' : tag.name}</span>
             <span className="tags__count">{tag.count}</span>
           </li>
         );
