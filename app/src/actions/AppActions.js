@@ -144,14 +144,14 @@ export function setNoteTag(id, tag) {
   };
 }
 
-const updateNoteEditor = (id, text, editorState, selectionState) => {
-  store.dispatch({
+export const updateNoteEditor = (id, text, editorState, selectionState) => {
+  return {
     type: AppConstants.APP_UPDATE_NOTE_EDITOR,
     id,
     text,
     editorState,
     selectionState
-  });
+  };
 };
 
 const attemptLogin = (username, password) => {
@@ -181,9 +181,6 @@ const attemptLogin = (username, password) => {
 const saveCredentials = (username, password) => {};
 
 export default {
-  deleteTag,
-  setSelectedTag,
-  setNoteText,
   updateNoteEditor,
   attemptLogin,
   saveCredentials

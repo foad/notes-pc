@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import AppActions from '../actions/AppActions';
-
 import {
   Editor,
   EditorState,
@@ -11,27 +9,16 @@ import {
 } from 'draft-js';
 
 export default class NoteEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editorState: props.editorState,
-      selectionState: props.selectionState,
-      id: props.id
-    };
-    this.onChange = this.onChange.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-  }
-
   onBlur() {
     this.props.setNoteText(
-      this.state.id,
-      this.state.editorState.getCurrentContent().getPlainText()
+      this.props.id,
+      this.props.editorState.getCurrentContent().getPlainText()
     );
   }
 
   onChange(editorState) {
-    AppActions.updateNoteEditor(
-      this.state.id,
+    this.props.updateNoteEditor(
+      this.props.id,
       editorState.getCurrentContent().getPlainText(),
       editorState,
       editorState.getSelection()
@@ -39,7 +26,7 @@ export default class NoteEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.id != this.state.id) {
+    if (nextProps.id != this.props.id) {
       this.setState({
         ...this.state,
         editorState: EditorState.createWithContent(
@@ -62,8 +49,8 @@ export default class NoteEditor extends Component {
     return (
       <Editor
         editorState={EditorState.acceptSelection(
-          this.state.editorState,
-          this.state.selectionState
+          this.props.editorState,
+          this.props.selectionState
         )}
         onBlur={this.onBlur}
         onChange={this.onChange}

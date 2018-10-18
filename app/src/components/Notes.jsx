@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 
 import Select from 'react-select';
 
-import { setNoteText, setNoteTitle, setNoteTag } from '../actions/AppActions';
+import {
+  setNoteText,
+  setNoteTitle,
+  setNoteTag,
+  updateNoteEditor
+} from '../actions/AppActions';
 
 import NotesMenu from './NotesMenu.jsx';
 import NoteEditor from './NoteEditor.jsx';
@@ -57,6 +62,7 @@ class Notes extends Component {
           editorState={this.props.editorState}
           selectionState={this.props.selectionState}
           setNoteText={this.props.setNoteText}
+          updateNoteEditor={this.props.updateNoteEditor}
         />
       </div>
     );
@@ -87,6 +93,7 @@ export default connect(
   {
     setNoteText,
     setNoteTitle,
-    setNoteTag
+    setNoteTag,
+    updateNoteEditor
   }
 )(Notes);
