@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   createNote,
   setSelectedNote,
-  searchNotes
+  searchNotes,
+  deleteNote
 } from '../actions/AppActions';
 
 import SearchBar from './SearchBar.jsx';
@@ -16,7 +17,7 @@ class NotesBar extends Component {
     if (this.props.selectedTag === -1)
       return notes.filter(note => this.isNoteInSearch(note));
     return notes.filter(
-      note => note.tag === this.props.selectedTag && isNoteInSearch(note)
+      note => note.tag === this.props.selectedTag && this.isNoteInSearch(note)
     );
   }
 
@@ -44,6 +45,12 @@ class NotesBar extends Component {
           <p>{note.text == '' ? '[No content]' : note.text}</p>
           <span className="notesummary__date">
             {new Date(note.date).toLocaleString('en-GB')}
+          </span>
+          <span
+            className="notesummary__button"
+            onClick={() => this.props.deleteNote(note.id)}
+          >
+            ×
           </span>
         </div>
       );
@@ -113,6 +120,7 @@ export default connect(
   {
     createNote,
     setSelectedNote,
-    searchNotes
+    searchNotes,
+    deleteNote
   }
 )(NotesBar);

@@ -11,6 +11,7 @@ let actions = keymirror({
   APP_UPDATE_NOTE_TITLE: null,
   APP_CREATE_NEW_NOTE: null,
   APP_UPDATE_NOTE_TAG: null,
+  APP_DELETE_NOTE: null,
   APP_UPDATE_NOTE_EDITOR: null,
   APP_SET_TOKEN: null,
   APP_SET_API_RESPONSE: null,

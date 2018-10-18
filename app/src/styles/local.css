@@ -169,6 +169,7 @@
   margin: 6px 0;
   padding: 8px 16px;
   cursor: pointer;
+  position: relative;
 }
 .notesummary.selected {
   background-color: var(--primary-color-darker);
@@ -189,6 +190,19 @@
 }
 .notesummary__date {
   font-size: 11px;
+}
+.notesummary__button {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  line-height: 16px;
+  top: 4px;
+  right: 4px;
+  display: none;
+}
+.notesummary.selected .notesummary__button {
+  display: inline-block;
 }
 
 /**** NOTES ****/

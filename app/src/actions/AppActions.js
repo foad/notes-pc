@@ -144,6 +144,19 @@ export function setNoteTag(id, tag) {
   };
 }
 
+export function deleteNote(id) {
+  return dispatch => {
+    db.table('notes')
+      .delete(id)
+      .then(() => {
+        dispatch({
+          type: AppConstants.APP_DELETE_NOTE,
+          id
+        });
+      });
+  };
+}
+
 export const updateNoteEditor = (id, text, editorState, selectionState) => {
   return {
     type: AppConstants.APP_UPDATE_NOTE_EDITOR,
