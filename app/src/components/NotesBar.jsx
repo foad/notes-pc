@@ -1,81 +1,44 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import AppActions from "../actions/AppActions";
+import { createNote, setSelectedNote } from '../actions/AppActions';
 
-import SearchBar from "./SearchBar.jsx";
-import NoteSort from "./NoteSort.jsx";
+import SearchBar from './SearchBar.jsx';
+import NoteSort from './NoteSort.jsx';
 
 class NotesBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedTag: props.selectedTag,
-      selectedNote: props.selectedNote,
-      tags: props.tags,
-      notes: props.notes,
-      noteTags: props.noteTags
-    };
-
-    this.getNoteSummaries = this.getNoteSummaries.bind(this);
-    this.getTaggedNotes = this.getTaggedNotes.bind(this);
-    this.newNote = this.newNote.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      ...this.state,
-      selectedTag: nextProps.selectedTag,
-      tags: nextProps.tags,
-      notes: nextProps.notes,
-      selectedNote: nextProps.selectedNote,
-      noteTags: nextProps.noteTags
-    });
-  }
-
   getTaggedNotes() {
-    const notes = [...this.state.notes];
-    if (this.state.selectedTag == -1) return notes;
-    return notes.filter(notes => notes.tag == this.state.selectedTag);
+    const notes = [...this.props.notes];
+    if (this.props.selectedTag === -1) return notes;
+    return notes.filter(notes => notes.tag == this.props.selectedTag);
   }
 
-  setSelectedNote(id) {
-    AppActions.setSelectedNote(id);
-  }
-
-  getNoteSummaries() {
+  getNoteSummaries = () => {
     let taggedNotes = this.getTaggedNotes();
 
-    let notesummaries = [];
-
-    for (let i = 0; i < taggedNotes.length; i++) {
-      let clickHandler = this.setSelectedNote.bind(this, taggedNotes[i].id);
-
-      notesummaries.push(
+    const notesummaries = taggedNotes.map(note => {
+      return (
         <div
-          key={taggedNotes[i].id}
+          key={note.id}
           className={
-            "notesummary" +
-            (taggedNotes[i].id == this.state.selectedNote ? " selected" : "")
+            'notesummary ' +
+            (note.id === this.props.selectedNote ? 'selected' : '')
           }
-          onClick={clickHandler}
+          onClick={() => {
+            this.props.setSelectedNote(note.id);
+          }}
         >
-          <h3>
-            {taggedNotes[i].name == "" ? "[No title]" : taggedNotes[i].name}
-          </h3>
-          <p>
-            {taggedNotes[i].text == "" ? "[No content]" : taggedNotes[i].text}
-          </p>
+          <h3>{note.name == '' ? '[No title]' : note.name}</h3>
+          <p>{note.text == '' ? '[No content]' : note.text}</p>
           <span className="notesummary__date">
-            {new Date(taggedNotes[i].date).toLocaleString("en-GB")}
+            {new Date(note.date).toLocaleString('en-GB')}
           </span>
         </div>
       );
-    }
+    });
 
     return <div className="notesummaries">{notesummaries}</div>;
-  }
+  };
 
   getLatestNote(notes) {
     let largestID = -1;
@@ -85,27 +48,25 @@ class NotesBar extends Component {
     return largestID;
   }
 
-  newNote() {
-    let noteIndex = this.getLatestNote(this.state.notes) + 1;
+  newNote = () => {
     let date = new Date().toISOString();
-    date = date.replace("T", " ");
-    date = date.replace("Z", "");
+    date = date.replace('T', ' ');
+    date = date.replace('Z', '');
     let note = {
-      id: noteIndex,
-      name: "",
-      tag: this.state.selectedTag,
+      name: '',
+      tag: this.props.selectedTag,
       date: date,
-      text: ""
+      text: ''
     };
-    AppActions.createNewNote(note);
-  }
+    this.props.createNote(note);
+  };
 
   getSelectedTagName() {
-    for (let i = 0; i < this.state.tags.length; i++) {
-      if (this.state.tags[i].id == this.state.selectedTag)
-        return this.state.tags[i].name;
-    }
-    return "All Notes";
+    const tag = this.props.tags.filter(
+      tag => tag.id === this.props.selectedTag
+    )[0];
+    if (tag) return tag.name;
+    return 'All Notes';
   }
 
   render() {
@@ -134,4 +95,10 @@ const mapStateToProps = state => {
     noteTags
   };
 };
-export default connect(mapStateToProps)(NotesBar);
+export default connect(
+  mapStateToProps,
+  {
+    createNote,
+    setSelectedNote
+  }
+)(NotesBar);

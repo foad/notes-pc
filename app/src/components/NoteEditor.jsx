@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import AppActions from "../actions/AppActions";
+import AppActions from '../actions/AppActions';
 
 import {
   Editor,
@@ -8,7 +8,7 @@ import {
   ContentState,
   EditorChangeType,
   SelectionState
-} from "draft-js";
+} from 'draft-js';
 
 export default class NoteEditor extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class NoteEditor extends Component {
   }
 
   onBlur() {
-    AppActions.setNoteText(
+    this.props.setNoteText(
       this.state.id,
       this.state.editorState.getCurrentContent().getPlainText()
     );
