@@ -10,14 +10,9 @@ export default (state = {}, payload) => {
     }
 
     case AppConstants.APP_DELETE_TAG: {
-      const tags = [...state.tags];
-      let newTags = [];
-      for (let i = 0; i < tags.length; i++) {
-        if (tags[i].id !== payload.id) newTags.push(tags[i]);
-      }
       return {
         ...state,
-        tags: newTags
+        tags: state.tags.filter(tag => tag.id !== payload.id)
       };
     }
 
@@ -38,7 +33,7 @@ export default (state = {}, payload) => {
     case AppConstants.APP_SET_TAG_TEXT: {
       const tags = state.tags.map(
         tag =>
-          tag.id === payload.id ? { id: tag.id, name: payload.text } : tag
+          tag.id === payload.id ? { id: tag.id, name: payload.name } : tag
       );
       return {
         ...state,
@@ -47,10 +42,10 @@ export default (state = {}, payload) => {
     }
 
     case AppConstants.APP_CREATE_NEW_TAG: {
-      const id = Math.max.apply(Math, state.tags.map(tag => tag.id)) + 1;
+      const id = payload.tag.id;
       return {
         ...state,
-        tags: [...state.tags, { id, name: '' }],
+        tags: [...state.tags, payload.tag],
         editingTag: id,
         selectedTag: id
       };

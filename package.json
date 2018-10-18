@@ -26,12 +26,14 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "dexie": "^2.0.4",
     "draft-js": "^0.10.4",
     "keymirror": "^0.1.1",
     "react": "^15.4.2",
     "react-codemirror": "^1.0.0",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.6",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.3.0"
   }
 }

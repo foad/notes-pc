@@ -1,57 +1,21 @@
 import axios from 'axios';
 
-import store from '../store.js';
-
+import store from '../store';
 import AppConstants from '../AppConstants';
+import db from '../db';
 
-const init = () => {
-  let token = store.getState().token;
-
-  axios
-    .post(AppConstants.API_URL, {
-      method: 'get_tags',
-      token: token
-    })
-    .then(res => {
-      if (res.data !== null && res.data !== '') {
-        let tags = [...res.data];
-
-        for (let i = 0; i < tags.length; i++) {
-          tags[i].id = Number(tags[i].id);
-        }
-        store.dispatch({
+export function init() {
+  return dispatch => {
+    db.table('tags')
+      .toArray()
+      .then(tags => {
+        dispatch({
           type: AppConstants.APP_LOAD_TAGS,
-          tags: tags
+          tags
         });
-      }
-    })
-    .catch(err => {
-      console.error(err);
-    });
-
-  axios
-    .post(AppConstants.API_URL, {
-      method: 'get_notes',
-      token: token
-    })
-    .then(res => {
-      if (res.data !== null && res.data !== '') {
-        let notes = [...res.data];
-
-        for (let i = 0; i < notes.length; i++) {
-          notes[i].id = Number(notes[i].id);
-        }
-
-        store.dispatch({
-          type: AppConstants.APP_LOAD_NOTES,
-          notes: notes
-        });
-      }
-    })
-    .catch(err => {
-      console.error(err);
-    });
-};
+      });
+  };
+}
 
 export const setSelectedTag = id => {
   return {
@@ -67,26 +31,46 @@ export const setEditingTag = id => {
   };
 };
 
-export const setTagText = (id, text) => {
-  return {
-    type: AppConstants.APP_SET_TAG_TEXT,
-    id,
-    text
+export function setTagText(id, name) {
+  return dispatch => {
+    db.table('tags')
+      .update(id, { name })
+      .then(() => {
+        dispatch({
+          type: AppConstants.APP_SET_TAG_TEXT,
+          id,
+          name
+        });
+      });
   };
-};
+}
 
-export const deleteTag = id => {
-  return {
-    type: AppConstants.APP_DELETE_TAG,
-    id
+export function deleteTag(id) {
+  return dispatch => {
+    db.table('tags')
+      .delete(id)
+      .then(() => {
+        dispatch({
+          type: AppConstants.APP_DELETE_TAG,
+          id
+        });
+      });
   };
-};
+}
 
-export const createTag = () => {
-  return {
-    type: AppConstants.APP_CREATE_NEW_TAG
+export function createTag() {
+  return dispatch => {
+    const newTag = { name: '' };
+    db.table('tags')
+      .add(newTag)
+      .then(id => {
+        dispatch({
+          type: AppConstants.APP_CREATE_NEW_TAG,
+          tag: Object.assign({}, newTag, { id })
+        });
+      });
   };
-};
+}
 
 const setSelectedNote = id => {
   store.dispatch({
@@ -250,7 +234,6 @@ const attemptLogin = (username, password) => {
 const saveCredentials = (username, password) => {};
 
 export default {
-  init,
   deleteTag,
   setSelectedTag,
   setSelectedNote,
