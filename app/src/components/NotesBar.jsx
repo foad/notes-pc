@@ -26,10 +26,29 @@ class NotesBar extends Component {
     return note.name.includes(query) || note.text.includes(query);
   }
 
-  getNoteSummaries = () => {
-    let visibleNotes = this.getVisibleNotes();
+  sortNotes(notes) {
+    if (this.props.sortMethod === 'name') {
+      return notes.sort((noteA, noteB) => {
+        if (this.props.sortAscending) return noteA.name > noteB.name;
+        return noteA.name < noteB.name;
+      });
+    }
+    if (this.props.sortMethod === 'date') {
+      return notes.sort((noteA, noteB) => {
+        const noteADate = new Date(noteA.date);
+        const noteBDate = new Date(noteB.date);
+        if (this.props.sortAscending) return noteADate > noteBDate;
+        return noteADate < noteBDate;
+      });
+    }
+    return notes;
+  }
 
-    const notesummaries = visibleNotes.map(note => {
+  getNoteSummaries = () => {
+    const visibleNotes = this.getVisibleNotes();
+    const sortedNotes = this.sortNotes(visibleNotes);
+
+    const notesummaries = sortedNotes.map(note => {
       return (
         <div
           key={note.id}
@@ -112,7 +131,9 @@ const mapStateToProps = state => {
     notes: state.notes,
     selectedNote: state.selectedNote,
     noteTags,
-    searchQuery: state.searchQuery
+    searchQuery: state.searchQuery,
+    sortMethod: state.sortMethod,
+    sortAscending: state.sortAscending
   };
 };
 export default connect(

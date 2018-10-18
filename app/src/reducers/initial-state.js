@@ -91,5 +91,7 @@ export default {
   notes: [],
   editorState,
   selectionState: editorState.getSelection(),
-  searchQuery: ''
+  searchQuery: '',
+  sortMethod: 'date',
+  sortAscending: false
 };
