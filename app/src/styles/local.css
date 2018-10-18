@@ -89,14 +89,18 @@
   font-size: 14px;
   position: absolute;
   cursor: pointer;
-  left: 8px;
+  height: 16px;
+  width: 16px;
+  text-align: center;
+  line-height: 16px;
+  left: 4px;
   top: 0;
   bottom: 0;
   margin: auto;
   transition: color 0.2s;
 }
 .tags__button:hover {
-  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .colourmode {
   margin: 12px;
@@ -203,6 +207,9 @@
 }
 .notesummary.selected .notesummary__button {
   display: inline-block;
+}
+.notesummary__button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 /**** NOTES ****/
