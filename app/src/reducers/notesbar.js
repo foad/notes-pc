@@ -35,6 +35,13 @@ export default (state = {}, payload) => {
       };
     }
 
+    case AppConstants.APP_SEARCH_NOTES: {
+      return {
+        ...state,
+        searchQuery: payload.query
+      };
+    }
+
     default: {
       return state;
     }

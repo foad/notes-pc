@@ -9,16 +9,27 @@ import {
 } from 'draft-js';
 
 export default class NoteEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editorState: props.editorState,
+      selectionState: props.selectionState,
+      id: props.id
+    };
+    this.onChange = this.onChange.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+  }
+
   onBlur() {
     this.props.setNoteText(
-      this.props.id,
-      this.props.editorState.getCurrentContent().getPlainText()
+      this.state.id,
+      this.state.editorState.getCurrentContent().getPlainText()
     );
   }
 
   onChange(editorState) {
     this.props.updateNoteEditor(
-      this.props.id,
+      this.state.id,
       editorState.getCurrentContent().getPlainText(),
       editorState,
       editorState.getSelection()
@@ -26,7 +37,7 @@ export default class NoteEditor extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.id != this.props.id) {
+    if (nextProps.id != this.state.id) {
       this.setState({
         ...this.state,
         editorState: EditorState.createWithContent(
@@ -49,8 +60,8 @@ export default class NoteEditor extends Component {
     return (
       <Editor
         editorState={EditorState.acceptSelection(
-          this.props.editorState,
-          this.props.selectionState
+          this.state.editorState,
+          this.state.selectionState
         )}
         onBlur={this.onBlur}
         onChange={this.onChange}

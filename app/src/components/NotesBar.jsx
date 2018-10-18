@@ -1,22 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createNote, setSelectedNote } from '../actions/AppActions';
+import {
+  createNote,
+  setSelectedNote,
+  searchNotes
+} from '../actions/AppActions';
 
 import SearchBar from './SearchBar.jsx';
 import NoteSort from './NoteSort.jsx';
 
 class NotesBar extends Component {
-  getTaggedNotes() {
+  getVisibleNotes() {
     const notes = [...this.props.notes];
-    if (this.props.selectedTag === -1) return notes;
-    return notes.filter(notes => notes.tag == this.props.selectedTag);
+    if (this.props.selectedTag === -1)
+      return notes.filter(note => this.isNoteInSearch(note));
+    return notes.filter(
+      note => note.tag === this.props.selectedTag && isNoteInSearch(note)
+    );
+  }
+
+  isNoteInSearch(note) {
+    const query = this.props.searchQuery;
+    return note.name.includes(query) || note.text.includes(query);
   }
 
   getNoteSummaries = () => {
-    let taggedNotes = this.getTaggedNotes();
+    let visibleNotes = this.getVisibleNotes();
 
-    const notesummaries = taggedNotes.map(note => {
+    const notesummaries = visibleNotes.map(note => {
       return (
         <div
           key={note.id}
@@ -78,7 +90,7 @@ class NotesBar extends Component {
             +
           </span>
         </h2>
-        <SearchBar />
+        <SearchBar searchNotes={this.props.searchNotes} />
         <NoteSort />
         {this.getNoteSummaries()}
       </div>
@@ -92,13 +104,15 @@ const mapStateToProps = state => {
     tags: state.tags,
     notes: state.notes,
     selectedNote: state.selectedNote,
-    noteTags
+    noteTags,
+    searchQuery: state.searchQuery
   };
 };
 export default connect(
   mapStateToProps,
   {
     createNote,
-    setSelectedNote
+    setSelectedNote,
+    searchNotes
   }
 )(NotesBar);

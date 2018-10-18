@@ -90,5 +90,6 @@ export default {
   tags: [],
   notes: [],
   editorState,
-  selectionState: editorState.getSelection()
+  selectionState: editorState.getSelection(),
+  searchQuery: ''
 };

@@ -1,4 +1,4 @@
-import keymirror from "keymirror";
+import keymirror from 'keymirror';
 
 let actions = keymirror({
   APP_CREATE_NEW_TAG: null,
@@ -15,9 +15,10 @@ let actions = keymirror({
   APP_SET_TOKEN: null,
   APP_SET_API_RESPONSE: null,
   APP_LOAD_NOTES: null,
-  APP_LOAD_TAGS: null
+  APP_LOAD_TAGS: null,
+  APP_SEARCH_NOTES: null
 });
 let consts = {
-  API_URL: "https://danfoad.co.uk/notes/"
+  API_URL: 'https://danfoad.co.uk/notes/'
 };
 export default { ...actions, ...consts };

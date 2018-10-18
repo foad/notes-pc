@@ -154,6 +154,13 @@ export const updateNoteEditor = (id, text, editorState, selectionState) => {
   };
 };
 
+export const searchNotes = query => {
+  return {
+    type: AppConstants.APP_SEARCH_NOTES,
+    query
+  };
+};
+
 const attemptLogin = (username, password) => {
   axios
     .post(AppConstants.API_URL, {
