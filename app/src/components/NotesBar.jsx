@@ -26,7 +26,8 @@ class NotesBar extends Component {
 
   isNoteInSearch(note) {
     const query = this.props.searchQuery;
-    return note.name.includes(query) || note.text.includes(query);
+    const noteText = convertFromRaw(note.text).getPlainText();
+    return note.name.includes(query) || noteText.includes(query);
   }
 
   sortNotes(notes) {
@@ -107,7 +108,10 @@ class NotesBar extends Component {
     const tag = this.props.tags.filter(
       tag => tag.id === this.props.selectedTag
     )[0];
-    if (tag) return tag.name;
+    if (tag) {
+      if (tag.name !== '') return tag.name;
+      return '[untitled]';
+    }
     return 'All Notes';
   }
 

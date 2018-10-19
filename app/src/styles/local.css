@@ -277,10 +277,6 @@
   color: inherit;
   font-weight: bold;
 }
-.note__title ::selection {
-  background-color: var(--primary-color);
-  color: #ffffff;
-}
 .note__title:focus {
   outline: none;
 }
@@ -322,7 +318,7 @@
   font-size: 14px;
 }
 .DraftEditor-root ::selection {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color-lighter);
   color: #ffffff;
 }
 .DraftEditor-root::-webkit-scrollbar {

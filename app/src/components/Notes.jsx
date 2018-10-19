@@ -56,7 +56,7 @@ class Notes extends Component {
             options={this.getOptions()}
           />
         )}
-        <NotesMenu />
+        {this.props.selectedNote !== -1 && <NotesMenu />}
         <NoteEditor
           id={this.props.selectedNote}
           initialValue={this.props.noteText}

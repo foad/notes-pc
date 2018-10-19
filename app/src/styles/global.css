@@ -3,6 +3,8 @@
   --primary-color: #1ba0c8;
   --primary-color-darker: #157c99;
   --primary-color-darkest: #12667e;
+  --primary-color-lighter: #4bc2e7;
+  --primary-color-lightest: #a5e1f3;
 }
 
 /**** FONTS ****/
@@ -31,9 +33,12 @@ body.light {
   color: #444444;
   background-color: #fef5f5;
 }
-*:not(input) ::selection {
-  background-color: transparent;
-  color: inherit;
+::selection {
+  background-color: var(--primary-color-lighter);
+  color: #ffffff;
+}
+*:not(input) {
+  user-select: none;
 }
 #app {
   height: 100vh;
