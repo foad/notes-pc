@@ -5,7 +5,10 @@ import {
   EditorState,
   ContentState,
   EditorChangeType,
-  SelectionState
+  SelectionState,
+  RichUtils,
+  convertFromRaw,
+  convertToRaw
 } from 'draft-js';
 
 export default class NoteEditor extends Component {
@@ -23,14 +26,14 @@ export default class NoteEditor extends Component {
   onBlur() {
     this.props.setNoteText(
       this.state.id,
-      this.state.editorState.getCurrentContent().getPlainText()
+      convertToRaw(this.state.editorState.getCurrentContent())
     );
   }
 
   onChange(editorState) {
     this.props.updateNoteEditor(
       this.state.id,
-      editorState.getCurrentContent().getPlainText(),
+      convertToRaw(editorState.getCurrentContent()),
       editorState,
       editorState.getSelection()
     );
@@ -41,7 +44,7 @@ export default class NoteEditor extends Component {
       this.setState({
         ...this.state,
         editorState: EditorState.createWithContent(
-          ContentState.createFromText(nextProps.initialValue)
+          convertFromRaw(nextProps.initialValue)
         ),
         selectionState: SelectionState.createEmpty(),
         id: nextProps.id
@@ -56,6 +59,11 @@ export default class NoteEditor extends Component {
     }
   }
 
+  handleKeyCommand(command, editorState) {
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if (newState) this.onChange(newState);
+  }
+
   render() {
     return (
       <Editor
@@ -64,6 +72,7 @@ export default class NoteEditor extends Component {
           this.state.selectionState
         )}
         onBlur={this.onBlur}
+        handleKeyCommand={this.handleKeyCommand}
         onChange={this.onChange}
       />
     );

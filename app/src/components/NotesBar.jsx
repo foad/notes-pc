@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+
 import {
   createNote,
   setSelectedNote,
@@ -50,6 +52,7 @@ class NotesBar extends Component {
     const sortedNotes = this.sortNotes(visibleNotes);
 
     const notesummaries = sortedNotes.map(note => {
+      const noteText = convertFromRaw(note.text).getPlainText();
       return (
         <div
           key={note.id}
@@ -62,7 +65,7 @@ class NotesBar extends Component {
           }}
         >
           <h3>{note.name == '' ? '[No title]' : note.name}</h3>
-          <p>{note.text == '' ? '[No content]' : note.text}</p>
+          <p>{noteText == '' ? '[No content]' : noteText}</p>
           <span className="notesummary__date">
             {new Date(note.date).toLocaleString('en-GB')}
           </span>
@@ -95,7 +98,7 @@ class NotesBar extends Component {
       name: '',
       tag: this.props.selectedTag,
       date: date,
-      text: ''
+      text: convertToRaw(EditorState.createEmpty().getCurrentContent())
     };
     this.props.createNote(note);
   };

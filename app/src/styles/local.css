@@ -293,7 +293,7 @@
   height: 24px;
   line-height: 21px;
   padding-left: 8px;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 .notesmenu button {
   -webkit-appearance: none;
@@ -320,7 +320,6 @@
   overflow: auto;
   padding: 16px;
   font-size: 14px;
-  font-family: 'Consolas', monospace;
 }
 .DraftEditor-root ::selection {
   background-color: var(--primary-color);
