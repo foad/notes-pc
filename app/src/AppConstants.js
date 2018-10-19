@@ -17,7 +17,8 @@ let actions = keymirror({
   APP_SET_API_RESPONSE: null,
   APP_LOAD_NOTES: null,
   APP_LOAD_TAGS: null,
-  APP_SEARCH_NOTES: null
+  APP_SEARCH_NOTES: null,
+  APP_SET_SORTING: null
 });
 let consts = {
   API_URL: 'https://danfoad.co.uk/notes/'

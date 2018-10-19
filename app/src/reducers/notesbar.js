@@ -49,6 +49,14 @@ export default (state = {}, payload) => {
       };
     }
 
+    case AppConstants.APP_SET_SORTING: {
+      return {
+        ...state,
+        sortMethod: payload.sortMethod,
+        sortAscending: payload.sortAscending
+      };
+    }
+
     default: {
       return state;
     }

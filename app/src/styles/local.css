@@ -174,6 +174,13 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+.notesort__current {
+  cursor: pointer;
+  align-self: stretch;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 8px;
+}
 .notesort__options {
   position: absolute;
   right: 0;
@@ -183,6 +190,7 @@
   background-color: var(--primary-color-darker);
   display: flex;
   flex-flow: column nowrap;
+  z-index: 100;
 }
 .notesort__options li {
   display: inline-block;
@@ -190,8 +198,13 @@
   flex: 1 0 0;
   cursor: pointer;
 }
-.notesort__options .current {
+.notesort__options li:hover {
   background-color: var(--primary-color);
+}
+.notesort__options .current,
+.notesort__options .current:hover {
+  background-color: var(--primary-color-darkest);
+  cursor: default;
 }
 .notesummaries {
   display: inline-flex;

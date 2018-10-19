@@ -174,6 +174,14 @@ export const searchNotes = query => {
   };
 };
 
+export const setSorting = (sortMethod, sortAscending) => {
+  return {
+    type: AppConstants.APP_SET_SORTING,
+    sortMethod,
+    sortAscending
+  };
+};
+
 const attemptLogin = (username, password) => {
   axios
     .post(AppConstants.API_URL, {

@@ -1,6 +1,13 @@
 import React, { Component, Fragment } from 'react';
 
 export default class NoteSort extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      optionsVisible: false
+    };
+  }
   getDirectionArrow(ascending) {
     if (ascending) return <i className="fa fa-arrow-up" />;
     return <i className="fa fa-arrow-down" />;
@@ -27,6 +34,10 @@ export default class NoteSort extends Component {
             className={
               isCurrentMethod && this.props.sortAscending ? 'current' : ''
             }
+            onClick={() => {
+              this.props.setSorting(method, true);
+              this.toggleOptions();
+            }}
           >
             {this.getSortMethod(method, true)}
           </li>
@@ -34,6 +45,10 @@ export default class NoteSort extends Component {
             className={
               isCurrentMethod && !this.props.sortAscending ? 'current' : ''
             }
+            onClick={() => {
+              this.props.setSorting(method, false);
+              this.toggleOptions();
+            }}
           >
             {this.getSortMethod(method, false)}
           </li>
@@ -43,12 +58,18 @@ export default class NoteSort extends Component {
     return <ul className="notesort__options">{options}</ul>;
   }
 
+  toggleOptions = () => {
+    this.setState({ optionsVisible: !this.state.optionsVisible });
+  };
+
   render() {
     return (
       <div className="notesort">
         <h2>Sort</h2>
-        {this.getSortMethod(this.props.sortMethod, this.props.sortAscending)}
-        {this.getSortOptions()}
+        <div className="notesort__current" onClick={this.toggleOptions}>
+          {this.getSortMethod(this.props.sortMethod, this.props.sortAscending)}
+        </div>
+        {this.state.optionsVisible && this.getSortOptions()}
       </div>
     );
   }

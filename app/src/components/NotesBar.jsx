@@ -5,7 +5,8 @@ import {
   createNote,
   setSelectedNote,
   searchNotes,
-  deleteNote
+  deleteNote,
+  setSorting
 } from '../actions/AppActions';
 
 import SearchBar from './SearchBar.jsx';
@@ -120,6 +121,7 @@ class NotesBar extends Component {
         <NoteSort
           sortMethod={this.props.sortMethod}
           sortAscending={this.props.sortAscending}
+          setSorting={this.props.setSorting}
         />
         {this.getNoteSummaries()}
       </div>
@@ -145,6 +147,7 @@ export default connect(
     createNote,
     setSelectedNote,
     searchNotes,
-    deleteNote
+    deleteNote,
+    setSorting
   }
 )(NotesBar);
