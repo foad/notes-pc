@@ -66,15 +66,17 @@ export default class NoteEditor extends Component {
 
   render() {
     return (
-      <Editor
-        editorState={EditorState.acceptSelection(
-          this.state.editorState,
-          this.state.selectionState
-        )}
-        onBlur={this.onBlur}
-        handleKeyCommand={this.handleKeyCommand}
-        onChange={this.onChange}
-      />
+      this.props.id !== -1 && (
+        <Editor
+          editorState={EditorState.acceptSelection(
+            this.state.editorState,
+            this.state.selectionState
+          )}
+          onBlur={this.onBlur}
+          handleKeyCommand={this.handleKeyCommand}
+          onChange={this.onChange}
+        />
+      )
     );
   }
 }

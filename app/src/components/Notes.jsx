@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Select from 'react-select';
+import { EditorState, convertToRaw } from 'draft-js';
 
 import {
   setNoteText,
@@ -77,7 +78,12 @@ const mapStateToProps = state => {
     return note.id == state.selectedNote;
   });
   if (selectedNoteVal === undefined)
-    selectedNoteVal = { id: -1, name: '', tag: -1, text: '' };
+    selectedNoteVal = {
+      id: -1,
+      name: '',
+      tag: -1,
+      text: convertToRaw(EditorState.createEmpty().getCurrentContent())
+    };
   return {
     selectedNote: selectedNoteVal.id,
     noteName: selectedNoteVal.name,

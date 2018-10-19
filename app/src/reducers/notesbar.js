@@ -45,7 +45,8 @@ export default (state = {}, payload) => {
     case AppConstants.APP_DELETE_NOTE: {
       return {
         ...state,
-        notes: state.notes.filter(note => note.id !== payload.id)
+        notes: state.notes.filter(note => note.id !== payload.id),
+        selectedNote: -1
       };
     }
 
