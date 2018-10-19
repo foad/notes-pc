@@ -150,14 +150,48 @@
 .notesort {
   background-color: var(--primary-color);
   height: 28px;
-  line-height: 28px;
   color: #ffffff;
   margin-bottom: 8px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  position: relative;
 }
 .notesort h2 {
   font-weight: bold;
   font-size: 12px;
   letter-spacing: 0.5px;
+  display: inline-block;
+  flex: 1 0 0;
+}
+.notesort__direction {
+  font-size: 12px;
+  padding: 0 8px;
+  display: inline-block;
+}
+.notesort__method {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.notesort__options {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  text-align: right;
+  list-style: none;
+  background-color: var(--primary-color-darker);
+  display: flex;
+  flex-flow: column nowrap;
+}
+.notesort__options li {
+  display: inline-block;
+  padding-left: 8px;
+  flex: 1 0 0;
+  cursor: pointer;
+}
+.notesort__options .current {
+  background-color: var(--primary-color);
 }
 .notesummaries {
   display: inline-flex;

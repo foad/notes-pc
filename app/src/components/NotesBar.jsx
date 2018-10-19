@@ -117,7 +117,10 @@ class NotesBar extends Component {
           </span>
         </h2>
         <SearchBar searchNotes={this.props.searchNotes} />
-        <NoteSort />
+        <NoteSort
+          sortMethod={this.props.sortMethod}
+          sortAscending={this.props.sortAscending}
+        />
         {this.getNoteSummaries()}
       </div>
     );
